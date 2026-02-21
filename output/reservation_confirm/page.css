@@ -1,0 +1,427 @@
+/* ===== 예약 확인 페이지 전용 스타일 ===== */
+
+.rsv-container {
+  padding-bottom: 100px;
+}
+
+/* 예약 정보 요약 */
+.rsv-summary {
+  background: #fff;
+  padding: 20px 16px;
+  border-bottom: 8px solid #F6F7F9;
+}
+.rsv-summary-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #292929;
+  margin-bottom: 8px;
+}
+.rsv-summary-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+.rsv-summary-info span {
+  font-size: 14px;
+  color: #666;
+}
+.rsv-divider {
+  color: #ddd !important;
+  font-size: 12px !important;
+}
+.rsv-summary-price {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #EFF4FF;
+  padding: 12px 14px;
+  border-radius: 8px;
+}
+.rsv-price-label {
+  font-size: 14px;
+  color: #666;
+}
+.rsv-price-value {
+  font-size: 18px;
+  font-weight: 700;
+  color: #4475F6;
+}
+
+/* 섹션 공통 */
+.rsv-section {
+  padding: 20px 16px 0;
+}
+.rsv-section-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: #292929;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.rsv-section-desc {
+  font-size: 13px;
+  color: #888;
+  margin-bottom: 12px;
+  margin-top: -4px;
+}
+.required-badge {
+  font-size: 11px;
+  font-weight: 600;
+  color: #fff;
+  background: #DC063A;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+/* 예약 유형 버튼 */
+.rsv-type-buttons {
+  display: flex;
+  gap: 0;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.rsv-type-buttons button {
+  flex: 1;
+  padding: 14px 0;
+  font-size: 15px;
+  font-weight: 600;
+  text-align: center;
+  border: 1px solid #e0e0e0;
+  border-radius: 0;
+  background: #fff;
+  color: #888;
+  transition: all 0.2s;
+}
+.rsv-type-buttons button + button {
+  border-left: none;
+}
+.rsv-type-buttons button:first-child {
+  border-radius: 8px 0 0 8px;
+}
+.rsv-type-buttons button:last-child {
+  border-radius: 0 8px 8px 0;
+}
+.rsv-type-buttons button.active {
+  background: #4475F6;
+  color: #fff;
+  border-color: #4475F6;
+}
+
+/* 폼 영역 */
+.rsv-form {
+  border-bottom: 8px solid #F6F7F9;
+  padding-bottom: 20px;
+}
+
+/* pill 버튼 (결제방법/결제자) */
+.rsv-section .tabmenu-buttons {
+  display: flex;
+  gap: 8px;
+}
+.rsv-section .tabmenu-buttons button {
+  flex: 1;
+  padding: 12px 0;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 500;
+  border: 1px solid #aaa;
+  color: #aaa;
+  background: #fff;
+  text-align: center;
+  transition: all 0.2s;
+}
+.rsv-section .tabmenu-buttons button.active {
+  background: #4475F6;
+  color: #fff;
+  border-color: #4475F6;
+}
+
+/* 입력 필드 */
+.input-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+.input-label {
+  flex-shrink: 0;
+  width: 60px;
+  font-size: 14px;
+  color: #666;
+}
+.rsv-input {
+  flex: 1;
+  padding: 12px 14px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 14px;
+  color: #292929;
+  background: #F6F7F9;
+}
+.rsv-input:focus {
+  border-color: #4475F6;
+  outline: none;
+  background: #fff;
+}
+.rsv-input::placeholder {
+  color: #bbb;
+}
+.rsv-input.input-error {
+  border-color: #DC063A;
+}
+.input-with-unit {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  background: #F6F7F9;
+  overflow: hidden;
+}
+.input-with-unit .rsv-input {
+  border: none;
+  border-radius: 0;
+}
+.input-with-unit .rsv-input:focus {
+  border: none;
+}
+.input-unit {
+  flex-shrink: 0;
+  padding: 0 14px 0 0;
+  font-size: 14px;
+  color: #888;
+}
+
+/* 위임자 정보 */
+.delegate-fields {
+  background: #F6F7F9;
+  border-radius: 8px;
+  padding: 16px 14px 6px;
+}
+
+/* 분배 방식 버튼 */
+.rsv-split-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+/* 분배 패널 */
+.split-panel {
+  /* show/hide로 전환 */
+}
+
+/* 균등 분배 인원 버튼 */
+.equal-count-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+/* 균등 분배 금액 안내 */
+.equal-info {
+  background: #EFF4FF;
+  border-radius: 8px;
+  padding: 12px 14px;
+  margin-top: 12px;
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+.equal-per-person {
+  font-size: 15px;
+  font-weight: 700;
+  color: #4475F6;
+}
+.equal-per-person em {
+  font-style: normal;
+}
+.equal-detail {
+  font-size: 12px;
+  color: #888;
+}
+
+/* 섹션 부제목 */
+.rsv-section-sub {
+  font-size: 12px;
+  font-weight: 400;
+  color: #888;
+}
+
+/* 균등 분배 동반자 아이템 */
+.equal-companion-item {
+  margin-top: 12px;
+}
+.equal-companion-item .companion-header {
+  margin-bottom: 10px;
+}
+.equal-amount-value {
+  font-size: 14px;
+  font-weight: 600;
+  color: #4475F6;
+}
+
+/* 동반자 섹션 */
+.rsv-companion-section {
+  /* slideToggle로 제어 */
+}
+.companion-item {
+  background: #F6F7F9;
+  border-radius: 8px;
+  padding: 14px;
+  margin-bottom: 10px;
+}
+.companion-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+.companion-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #292929;
+}
+.companion-remove {
+  font-size: 12px;
+  color: #DC063A;
+  padding: 4px 8px;
+  border: 1px solid #DC063A;
+  border-radius: 4px;
+  background: transparent;
+}
+.companion-fields .input-row {
+  margin-bottom: 8px;
+}
+.companion-fields .input-label {
+  width: 56px;
+  font-size: 13px;
+}
+.companion-fields .rsv-input {
+  padding: 10px 12px;
+  font-size: 13px;
+}
+.companion-fields .input-unit {
+  font-size: 13px;
+}
+
+/* 동반자 추가 버튼 */
+.companion-add-btn {
+  width: 100%;
+  padding: 12px 0;
+  border: 1px dashed #4475F6;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #4475F6;
+  background: #fff;
+  text-align: center;
+  margin-bottom: 16px;
+}
+.companion-add-btn:disabled {
+  border-color: #ccc;
+  color: #ccc;
+  cursor: default;
+}
+
+/* 금액 합계 */
+.companion-total {
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 14px;
+}
+.companion-total-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 0;
+  font-size: 14px;
+  color: #666;
+}
+.companion-total-row.total-row {
+  border-top: 1px solid #e0e0e0;
+  margin-top: 6px;
+  padding-top: 12px;
+  font-weight: 700;
+  color: #292929;
+}
+.companion-sum.over-limit {
+  color: #DC063A;
+}
+.total-amount {
+  color: #4475F6;
+  font-size: 16px;
+}
+
+/* 유의사항 */
+.rsv-notice {
+  padding: 20px 16px;
+}
+.rsv-notice-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #888;
+  margin-bottom: 10px;
+}
+.rsv-notice-list {
+  padding-left: 0;
+}
+.rsv-notice-list li {
+  font-size: 13px;
+  color: #aaa;
+  line-height: 1.8;
+  padding-left: 12px;
+  position: relative;
+}
+.rsv-notice-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 10px;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #ccc;
+}
+
+/* 하단 고정 바 */
+.rsv-bottom-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #fff;
+  border-top: 1px solid #e0e0e0;
+  padding: 16px 16px 32px;
+  z-index: 90;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  box-sizing: border-box;
+}
+.rsv-bottom-price {
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+}
+.rsv-bottom-label {
+  font-size: 11px;
+  color: #888;
+}
+.rsv-bottom-value {
+  font-size: 18px;
+  font-weight: 700;
+  color: #4475F6;
+}
+.rsv-submit-btn {
+  flex: 1;
+  height: 48px;
+  line-height: 48px;
+  padding: 0;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 700;
+  text-align: center;
+}

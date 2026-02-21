@@ -1,0 +1,299 @@
+<!-- ============================================================
+     PLK 실시간예약 메인 - 개발팀 전달용 마크업
+     body 내부 콘텐츠만 포함 (CSS/JS는 기존 서비스 참조)
+     ============================================================ -->
+
+<!-- ==================== 고정 헤더 ==================== -->
+<section class="header booking_header">
+  <a href="/new" class="header-logo" tabindex="-1">
+    <img src="/mobile/zones/new/img/departure/arrow.svg" alt="로고">
+  </a>
+  <h1 class="header-title">실시간예약</h1>
+</section>
+
+<!-- ==================== 메인 래퍼 ==================== -->
+<div class="booking_live">
+
+  <!-- ===== 검색/필터 영역 (sticky) ===== -->
+  <div class="container search-container">
+
+    <!-- 1. 가로 스크롤 달력 -->
+    <div class="booking_calendar_box">
+      <div class="booking_calendar">
+        <div class="cal_month">
+          <span>03월</span>
+        </div>
+        <ul class="cal_list">
+          <!-- 일반 날짜 -->
+          <li class="list_date" data-value="20260324">
+            <a onclick="change_day('20260324','','',this)" class="" tabindex="-1">
+              <span class="date_txt01">화</span>
+              <span class="date_txt02">24</span>
+            </a>
+          </li>
+          <!-- 선택된 날짜 -->
+          <li class="list_date active" data-value="20260325">
+            <a onclick="change_day('20260325','','',this)" class="" tabindex="-1">
+              <span class="date_txt01">수</span>
+              <span class="date_txt02">25</span>
+            </a>
+          </li>
+          <!-- 토요일 -->
+          <li class="list_date" data-value="20260328">
+            <a onclick="change_day('20260328','','',this)" class="txt_sat" tabindex="-1">
+              <span class="date_txt01">토</span>
+              <span class="date_txt02">28</span>
+            </a>
+          </li>
+          <!-- 일요일 -->
+          <li class="list_date" data-value="20260329">
+            <a onclick="change_day('20260329','','',this)" class="txt_sun" tabindex="-1">
+              <span class="date_txt01">일</span>
+              <span class="date_txt02">29</span>
+            </a>
+          </li>
+          <!-- 월 첫날 -->
+          <li class="list_date" data-value="20260401">
+            <a onclick="change_day('20260401','','',this)" class="" tabindex="-1">
+              <span class="date_txt01">수</span>
+              <span class="date_txt02">4/1</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 2. 검색바 -->
+    <section>
+      <div class="search-bar">
+        <input type="text" placeholder="골프장명, 지역명을 검색해주세요."
+               id="search_text" value="" class="search-input">
+        <img src="/mobile/zones/new/img/departure/search.svg"
+             alt="검색" id="search_icon" class="search-icon">
+      </div>
+    </section>
+
+    <!-- 3. 지역 탭메뉴 + 상세검색 -->
+    <section class="tabmenu-section region-section">
+      <div class="tabmenu-row">
+        <div class="tabmenu-buttons">
+          <button data-cate="" data-area="all" class="all-btn" tabindex="-1">전체</button>
+          <button data-cate="1,2" data-area="capital-area" class="active" tabindex="-1">서울/경기/인천</button>
+          <button data-cate="3" data-area="gangwon" class="active" tabindex="-1">강원</button>
+          <button data-cate="4" data-area="chungcheong" class="" tabindex="-1">충청</button>
+          <button data-cate="5" data-area="jeolla" class="" tabindex="-1">전라</button>
+          <button data-cate="6" data-area="gyeongsang" class="" tabindex="-1">경상</button>
+          <button data-cate="7" data-area="jeju" class="" tabindex="-1">제주</button>
+          <span onclick="button_clear();">모두해제
+            <img src="/mobile/zones/new/img/main/recent_delete_icon.png" style="width:13px;" alt="삭제 아이콘">
+          </span>
+        </div>
+      </div>
+      <div class="detail-search">
+        <button type="button" class="detail-search-btn" tabindex="-1">상세검색</button>
+        <img class="detail-search-arrow" src="/mobile/zones/new/img/place/arrow_icon.png"
+             onclick="$(this).prev().click()" alt="화살표 아이콘">
+      </div>
+    </section>
+
+  </div>
+
+  <!-- ===== 카드 리스트 (Ajax innerHTML 교체) ===== -->
+  <div class="container list-container">
+    <section class="card-section" id="ajax_list">
+
+      <!-- 카드 헤더 -->
+      <div class="card-section-head">
+        <span class="total">총 <em>3</em>건</span>
+        <label for="plk_recommend_chk" class="plk_recommend_chk">
+          <input type="checkbox" name="plk_recommend_chk" id="plk_recommend_chk">
+          <span class="txt">PLK 추천만 보기</span>
+        </label>
+      </div>
+
+      <!-- ===== 카드 (골프장 아이템) ===== -->
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">골프장명</h3>
+          <a href="https://map.naver.com/p/search/주소" target="_blank" class="card-distance" tabindex="-1">
+            <img src="/mobile/zones/new/img/place/distance_icon.png" alt="거리 아이콘">
+            <span>51.4km</span>
+          </a>
+        </div>
+        <div class="card-info">
+          <div class="card-info-txt card-info-txt-type02">
+            <div><span>경기도 안산시</span></div>
+            <div><span>대중제 (27H)</span></div>
+          </div>
+          <span class="detail-view" onclick="get_rs_cnt(골프장ID, this);" data-rs_cnt="N">
+            상세보기 <img src="/mobile/zones/new/img/place/detail_icon.png" alt="플러스 아이콘">
+          </span>
+        </div>
+        <div class="card-info-detail">
+          <h4>골프장 정보</h4>
+          <img class="card-close" src="/mobile/zones/new/img/place/close_icon.png" alt="닫기 버튼">
+          <div class="card-info-item">
+            <span class="info-title">나의 라운드</span>
+            <span class="info-text rs_cnt">0회</span>
+          </div>
+          <div class="card-info-item address-item">
+            <span class="info-title">주소</span>
+            <div class="info-text-group">
+              <span class="info-text">주소 텍스트</span>
+              <a href="https://map.naver.com/p/search/주소텍스트" target="_blank" class="hyperlink" tabindex="-1">지도보기</a>
+            </div>
+          </div>
+          <div class="card-info-item">
+            <span class="info-title">홈페이지</span>
+            <div class="info-text">
+              <a class="hyperlink" href="홈페이지URL" target="_blank" tabindex="-1">바로가기</a>
+            </div>
+          </div>
+        </div>
+        <div class="card-price-group">
+          <span class="card-price-txt">125,000원 ~</span>
+          <span class="card-price-team">21팀</span>
+        </div>
+        <section class="tabmenu-section time-section">
+          <div class="tabmenu-row">
+            <div class="tabmenu-buttons">
+              <button onclick="time_select(this,'','')" class="all-btn active" tabindex="-1">전체</button>
+              <button onclick="time_select(this,'0001','0830')" tabindex="-1">~08:30</button>
+              <button onclick="time_select(this,'0831','1030')" tabindex="-1">08:31~10:30</button>
+              <button onclick="time_select(this,'1031','1300')" tabindex="-1">10:31~13:00</button>
+              <button onclick="time_select(this,'1301','1430')" tabindex="-1">13:01~14:30</button>
+              <button onclick="time_select(this,'1431','2359')" tabindex="-1">14:30~</button>
+            </div>
+          </div>
+        </section>
+        <ul class="time_box">
+          <li class="plk_recommend"
+              onclick="reservation('','R','181','07:07','1','210000',this,'','','','','0','20260316110000','');"
+              data-time="0707">
+            <span class="course">East</span>
+            <div class="time_group">
+              <span class="time">07:07</span>
+              <span class="time_type">PLK 추천</span>
+            </div>
+            <span class="price">210,000원</span>
+          </li>
+        </ul>
+      </div>
+
+    </section>
+  </div>
+
+</div>
+
+<!-- ===== 상세검색 팝업 ===== -->
+<div class="detail-search-pop" style="display:none">
+  <div class="container">
+    <h5>상세검색</h5>
+    <img class="close" src="/mobile/zones/new/img/place/close_icon.png" alt="닫기 버튼">
+    <ul class="division-tab">
+      <li class="active" data-tab="tab01">라운드조건</li>
+      <li data-tab="tab02">지역구분</li>
+    </ul>
+    <div class="round-section tabmenu-section active" data-content="tab01">
+      <div class="inner">
+        <div class="tabmenu-row">
+          <span class="tabmenu-name">예약 방법</span>
+          <div class="tabmenu-buttons" id="rs_type">
+            <button data-rs_type="1" data-id="1" tabindex="-1">대기 예약</button>
+            <button data-rs_type="2" data-id="2" tabindex="-1">실시간 예약</button>
+            <button data-rs_type="3" data-id="3" tabindex="-1">페이백 접수</button>
+          </div>
+        </div>
+        <!-- 골프장 종류, 홀 수, 거리 동일 패턴 -->
+      </div>
+      <label class="inp_chk search_checkbox" for="plk_recommend_pop">
+        <input type="checkbox" name="plk_recommend_pop" id="plk_recommend_pop" style="margin: 0;">
+        <span class="txt">PLK 추천만 보기</span>
+      </label>
+    </div>
+    <div class="region-detail-section tabmenu-section" data-content="tab02">
+      <!-- 지역별 tabmenu-row 반복 -->
+    </div>
+    <div class="footer-btn">
+      <button type="button" class="reset-btn btn-stroke" tabindex="-1">선택 초기화</button>
+      <button type="button" class="search-btn btn-fill" tabindex="-1">검색</button>
+    </div>
+    <p class="sel-alert">지역을 한 개 이상 선택해 주세요</p>
+  </div>
+</div>
+
+<!-- ===== 팝업 달력 ===== -->
+<div class="calendar-popup" id="calendarPopup" style="display:none">
+  <div class="calendar-inner">
+    <div class="calendar-container" id="calendarContainer">
+      <!-- JS generateCalendar02()로 동적 생성 -->
+    </div>
+    <button type="button" class="close-btn btn-fill" tabindex="-1">닫기</button>
+  </div>
+</div>
+
+<!-- ===== Alert 팝업 ===== -->
+<div id="alert_pop" class="primary_popup agree_popup" style="display:none">
+  <div class="pop_close_bg"></div>
+  <div class="popup_content">
+    <div class="txt" id="alert_pop_title">메시지</div>
+    <button class="close btn-fill popup_s1_btn1" type="button" tabindex="-1">확인</button>
+  </div>
+</div>
+
+<!-- ===== Confirm 팝업 ===== -->
+<div class="mpop popup_s1n" id="confirm_pop" style="display:none">
+  <div class="popup_s1_inner">
+    <div class="info1 popup_s4_contents" id="confirm_pop_title">메시지</div>
+    <div class="popup_s2_btn2">
+      <a class="cancel_50" id="confirm_no" tabindex="-1">취소</a>
+      <a class="half_50" id="confirm_ok" data-func="" tabindex="-1">확인</a>
+    </div>
+  </div>
+</div>
+
+<!-- ===== Bottom Sheet 팝업 ===== -->
+<div class="bottom_popup inactive_popup" style="display:none">
+  <div class="pop_close_bg"></div>
+  <div class="popup_content" style="bottom: 0;">
+    <div class="txt"><em>메시지</em></div>
+    <button class="close" type="button" tabindex="-1">확인</button>
+  </div>
+</div>
+
+<!-- ===== 로딩 화면 ===== -->
+<div class="loading-container" style="display:none">
+  <div style="width:100%;height:200px;"></div>
+  <img class="logo-img" src="/mobile/zones/img/mo_logo.png"
+       style="width:60%;margin:auto auto" alt="Pacific Links Korea">
+  <div class="loading-bar">
+    <div class="loading-progress" id="loadingProgress" style="width: 0%;"></div>
+  </div>
+  <div class="loading-text" id="loadingText" style="color: rgb(51, 51, 51);">로딩 중...</div>
+</div>
+
+<!-- ===== 퀵메뉴 ===== -->
+<div class="quick_menu" style="bottom: 7px;">
+  <span class="back_btn"><img src="/mobile/zones/new/img/main/back_on_ico.png" alt="뒤로가기"></span>
+  <span class="top_btn"><img src="/mobile/zones/new/img/main/top_off_ico.png" alt="위로가기"></span>
+</div>
+
+<!-- ===== 예약 Hidden Form ===== -->
+<form id="rs_form" method="get" action="/new/booking_live/reservationR">
+  <input type="hidden" name="gf_place_seq" id="gf_place_seq" value="">
+  <input type="hidden" name="t_day" id="t_day" value="20260325">
+  <input type="hidden" name="url" value="/booking_live">
+  <input type="hidden" name="time_seq" id="time_seq" value="">
+  <input type="hidden" name="gf_block_time_seq" id="gf_block_time_seq" value="">
+  <input type="hidden" name="course" id="course" value="">
+  <input type="hidden" name="t_time" id="t_time" value="">
+  <input type="hidden" name="green_fee" id="green_fee" value="">
+  <input type="hidden" name="green_fee_dc" id="green_fee_dc" value="">
+  <input type="hidden" name="seq" id="seq" value="">
+  <input type="hidden" name="payment_option" id="payment_option" value="">
+  <input type="hidden" name="member_option" id="member_option" value="">
+  <input type="hidden" name="part_time" id="part_time" value="">
+  <input type="hidden" name="cady_type" id="cady_type" value="">
+  <input type="hidden" name="remark" id="remark" value="">
+  <input type="hidden" name="noti" id="noti" value="">
+</form>
