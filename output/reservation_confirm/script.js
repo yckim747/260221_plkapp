@@ -286,7 +286,6 @@ function generateEqualCompanions(n) {
     var html = '<div class="companion-item equal-companion-item" data-index="' + i + '">'
       + '<div class="companion-header">'
       + '  <span class="companion-label">동반자 ' + i + '</span>'
-      + '  <span class="equal-amount-value">' + numberWithCommas(Math.floor(g_green_fee / g_equal_count)) + '원</span>'
       + '</div>'
       + '<div class="companion-fields">'
       + '  <div class="input-row">'
@@ -296,6 +295,10 @@ function generateEqualCompanions(n) {
       + '  <div class="input-row">'
       + '    <label class="input-label">연락처</label>'
       + '    <input type="tel" class="rsv-input equal-companion-phone" placeholder="010-0000-0000" maxlength="13" tabindex="-1">'
+      + '  </div>'
+      + '  <div class="input-row equal-amount-row">'
+      + '    <label class="input-label">결제금액</label>'
+      + '    <span class="equal-amount-value">' + numberWithCommas(Math.floor(g_green_fee / g_equal_count)) + '원</span>'
       + '  </div>'
       + '</div>'
       + '</div>';
@@ -680,23 +683,20 @@ function numberWithCommas(x) {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 }
 
-/** 입력 안내 토스트 (입력창 아래 표시, 2초 후 자동 사라짐) */
+/** 입력 안내 토스트 (화면 하단 고정, 2초 후 자동 사라짐) */
+var g_guide_showing = false;
 function showInputGuide(el, msg) {
-  var $el = $(el);
-  // 이미 표시 중이면 중복 방지
-  if ($el.data('guide-showing')) return;
-  $el.data('guide-showing', true);
+  if (g_guide_showing) return;
+  g_guide_showing = true;
 
   var $guide = $('<div class="input-guide-toast">' + msg + '</div>');
-  var $parent = $el.closest('.input-row');
-  if (!$parent.length) $parent = $el.parent();
-  $parent.css('position', 'relative').append($guide);
+  $('body').append($guide);
 
   setTimeout(function () {
     $guide.addClass('fade-out');
     setTimeout(function () {
       $guide.remove();
-      $el.data('guide-showing', false);
+      g_guide_showing = false;
     }, 300);
   }, 2000);
 }

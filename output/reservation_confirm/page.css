@@ -263,10 +263,13 @@ input[type="tel"].rsv-input {
 .equal-companion-item .companion-header {
   margin-bottom: 10px;
 }
+.equal-amount-row {
+  margin-bottom: 0;
+}
 .equal-amount-value {
   font-size: 14px;
   font-weight: 600;
-  color: #4475F6;
+  color: #292929;
 }
 
 /* 동반자 섹션 */
@@ -437,14 +440,19 @@ input[type="tel"].rsv-input {
   text-align: center;
 }
 
-/* 입력 안내 토스트 */
+/* 입력 안내 토스트 (화면 하단 고정) */
 .input-guide-toast {
-  position: absolute;
-  left: 0;
-  bottom: -24px;
-  font-size: 12px;
-  color: #DC063A;
+  position: fixed;
+  bottom: 100px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(41, 41, 41, 0.9);
+  color: #fff;
+  font-size: 13px;
+  padding: 10px 20px;
+  border-radius: 20px;
   white-space: nowrap;
+  z-index: 100;
   transition: opacity 0.3s;
 }
 .input-guide-toast.fade-out {
