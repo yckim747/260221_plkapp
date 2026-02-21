@@ -265,7 +265,7 @@ function calculateEqual() {
 
   // 나머지가 있을 때 안내
   if (myAmount !== perAmount) {
-    $('#equal_detail').text('(예약자 ' + numberWithCommas(myAmount) + '원 / 나머지 균등)');
+    $('#equal_detail').text(' (예약자 ' + numberWithCommas(myAmount) + '원 / 나머지 균등)');
   } else {
     $('#equal_detail').text('');
   }
