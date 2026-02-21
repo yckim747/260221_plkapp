@@ -75,13 +75,32 @@ function bindInputEvents() {
     }
   });
 
-  // 금액 입력 시 콤마 포맷 + 합계 재계산
+  // 금액 입력 시 콤마 포맷 + 초과 방지 + 합계 재계산
   $(document).on('input', '.companion-amount', function () {
     var before = $(this).val();
     var hasInvalid = /[^0-9,]/.test(before);
     var raw = before.replace(/[^0-9]/g, '');
     if (raw) {
-      $(this).val(numberWithCommas(parseInt(raw, 10)));
+      var currentVal = parseInt(raw, 10);
+
+      // 다른 동반자 금액 합산
+      var otherSum = 0;
+      var self = this;
+      $('.companion-amount').each(function () {
+        if (this !== self) {
+          var v = $(this).val().replace(/[^0-9]/g, '');
+          if (v) otherSum += parseInt(v, 10);
+        }
+      });
+
+      // 총 그린피 초과 시 마지막 숫자 취소
+      if (otherSum + currentVal > g_green_fee) {
+        raw = raw.substring(0, raw.length - 1);
+        currentVal = raw ? parseInt(raw, 10) : 0;
+        showInputGuide(this, '총 그린피를 초과하였습니다');
+      }
+
+      $(this).val(currentVal ? numberWithCommas(currentVal) : '');
     } else {
       $(this).val('');
     }
