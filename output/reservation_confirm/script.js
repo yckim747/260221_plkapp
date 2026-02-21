@@ -31,18 +31,62 @@ function initFromParams() {
 
 /** 입력 이벤트 바인딩 */
 function bindInputEvents() {
-  // 연락처 숫자만 입력
+  // 이름 한글만 입력 (IME 조합 고려)
+  $(document).on('compositionstart', '.companion-name, .equal-companion-name, #delegate_name', function () {
+    this.isComposing = true;
+  });
+  $(document).on('compositionend', '.companion-name, .equal-companion-name, #delegate_name', function () {
+    this.isComposing = false;
+    var val = $(this).val();
+    var cleaned = val.replace(/[^가-힣ㄱ-ㅎㅏ-ㅣ]/g, '');
+    if (val !== cleaned) {
+      $(this).val(cleaned);
+      showInputGuide(this, '한글만 입력 가능합니다');
+    }
+  });
+  $(document).on('input', '.companion-name, .equal-companion-name, #delegate_name', function () {
+    if (!this.isComposing) {
+      var val = $(this).val();
+      var cleaned = val.replace(/[^가-힣ㄱ-ㅎㅏ-ㅣ]/g, '');
+      if (val !== cleaned) {
+        $(this).val(cleaned);
+        showInputGuide(this, '한글만 입력 가능합니다');
+      }
+    }
+  });
+
+  // 연락처 숫자만 입력 + 하이픈 자동 삽입 (010-0000-0000)
   $(document).on('input', 'input[type="tel"]', function () {
-    $(this).val($(this).val().replace(/[^0-9]/g, ''));
+    var before = $(this).val();
+    var hasInvalid = /[^0-9\-]/.test(before);
+    var raw = before.replace(/[^0-9]/g, '');
+    if (raw.length > 11) raw = raw.substring(0, 11);
+    var formatted = '';
+    if (raw.length <= 3) {
+      formatted = raw;
+    } else if (raw.length <= 7) {
+      formatted = raw.substring(0, 3) + '-' + raw.substring(3);
+    } else {
+      formatted = raw.substring(0, 3) + '-' + raw.substring(3, 7) + '-' + raw.substring(7);
+    }
+    $(this).val(formatted);
+    if (hasInvalid) {
+      showInputGuide(this, '숫자만 입력 가능합니다');
+    }
   });
 
   // 금액 입력 시 콤마 포맷 + 합계 재계산
   $(document).on('input', '.companion-amount', function () {
-    var raw = $(this).val().replace(/[^0-9]/g, '');
+    var before = $(this).val();
+    var hasInvalid = /[^0-9,]/.test(before);
+    var raw = before.replace(/[^0-9]/g, '');
     if (raw) {
       $(this).val(numberWithCommas(parseInt(raw, 10)));
     } else {
       $(this).val('');
+    }
+    if (hasInvalid) {
+      showInputGuide(this, '숫자만 입력 가능합니다');
     }
     calculateCompanionTotal();
   });
@@ -232,7 +276,7 @@ function generateEqualCompanions(n) {
       + '  </div>'
       + '  <div class="input-row">'
       + '    <label class="input-label">연락처</label>'
-      + '    <input type="tel" class="rsv-input equal-companion-phone" placeholder="\'-\' 없이 숫자만 입력" maxlength="11" tabindex="-1">'
+      + '    <input type="tel" class="rsv-input equal-companion-phone" placeholder="010-0000-0000" maxlength="13" tabindex="-1">'
       + '  </div>'
       + '</div>'
       + '</div>';
@@ -265,7 +309,7 @@ function addCompanion() {
     + '  </div>'
     + '  <div class="input-row">'
     + '    <label class="input-label">연락처</label>'
-    + '    <input type="tel" class="rsv-input companion-phone" placeholder="\'-\' 없이 숫자만 입력" maxlength="11" tabindex="-1">'
+    + '    <input type="tel" class="rsv-input companion-phone" placeholder="010-0000-0000" maxlength="13" tabindex="-1">'
     + '  </div>'
     + '  <div class="input-row">'
     + '    <label class="input-label">결제금액</label>'
@@ -392,7 +436,7 @@ function validateDirect() {
       var eqValid = true;
       $('#equal_companion_list .equal-companion-item').each(function () {
         var name = $(this).find('.equal-companion-name').val().trim();
-        var phone = $(this).find('.equal-companion-phone').val().trim();
+        var phone = $(this).find('.equal-companion-phone').val().replace(/[^0-9]/g, '');
         var idx = $(this).find('.companion-label').text();
 
         if (!name) {
@@ -402,7 +446,7 @@ function validateDirect() {
           return false;
         }
         if (!phone || phone.length < 10 || phone.length > 11) {
-          showAlert(idx + '의 연락처를 정확히 입력해주세요.\n(숫자 10~11자리)');
+          showAlert(idx + '의 연락처를 정확히 입력해주세요.');
           $(this).find('.equal-companion-phone').addClass('input-error').focus();
           eqValid = false;
           return false;
@@ -418,7 +462,7 @@ function validateDirect() {
 
       $('#companion_list .companion-item').each(function () {
         var name = $(this).find('.companion-name').val().trim();
-        var phone = $(this).find('.companion-phone').val().trim();
+        var phone = $(this).find('.companion-phone').val().replace(/[^0-9]/g, '');
         var amount = $(this).find('.companion-amount').val().replace(/[^0-9]/g, '');
         var idx = $(this).find('.companion-label').text();
 
@@ -429,7 +473,7 @@ function validateDirect() {
           return false;
         }
         if (!phone || phone.length < 10 || phone.length > 11) {
-          showAlert(idx + '의 연락처를 정확히 입력해주세요.\n(숫자 10~11자리)');
+          showAlert(idx + '의 연락처를 정확히 입력해주세요.');
           $(this).find('.companion-phone').addClass('input-error').focus();
           valid = false;
           return false;
@@ -467,9 +511,9 @@ function validateDelegate() {
   }
 
   // 위임자 연락처 필수
-  var dPhone = $('#delegate_phone').val().trim();
+  var dPhone = $('#delegate_phone').val().replace(/[^0-9]/g, '');
   if (!dPhone || dPhone.length < 10 || dPhone.length > 11) {
-    showAlert('위임자 연락처를 정확히 입력해주세요.\n(숫자 10~11자리)');
+    showAlert('위임자 연락처를 정확히 입력해주세요.');
     $('#delegate_phone').addClass('input-error').focus();
     return false;
   }
@@ -532,7 +576,7 @@ function submitReservation() {
       $('#payer_type').val(g_payer_delegate);
     }
     $('#h_delegate_name').val($('#delegate_name').val().trim());
-    $('#h_delegate_phone').val($('#delegate_phone').val().trim());
+    $('#h_delegate_phone').val($('#delegate_phone').val().replace(/[^0-9]/g, ''));
     $('#split_type').val('');
     $('#split_count').val('');
   }
@@ -615,4 +659,25 @@ function showLoading(callback) {
 
 function numberWithCommas(x) {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+}
+
+/** 입력 안내 토스트 (입력창 아래 표시, 2초 후 자동 사라짐) */
+function showInputGuide(el, msg) {
+  var $el = $(el);
+  // 이미 표시 중이면 중복 방지
+  if ($el.data('guide-showing')) return;
+  $el.data('guide-showing', true);
+
+  var $guide = $('<div class="input-guide-toast">' + msg + '</div>');
+  var $parent = $el.closest('.input-row');
+  if (!$parent.length) $parent = $el.parent();
+  $parent.css('position', 'relative').append($guide);
+
+  setTimeout(function () {
+    $guide.addClass('fade-out');
+    setTimeout(function () {
+      $guide.remove();
+      $el.data('guide-showing', false);
+    }, 300);
+  }, 2000);
 }

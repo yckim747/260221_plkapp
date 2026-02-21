@@ -152,19 +152,22 @@
   font-size: 14px;
   color: #666;
 }
-.rsv-input {
+.rsv-input,
+input[type="text"].rsv-input,
+input[type="tel"].rsv-input {
   flex: 1;
-  padding: 12px 14px;
+  height: 48px;
+  padding: 0 14px;
   border: 1px solid #e0e0e0;
   border-radius: 8px;
   font-size: 14px;
   color: #292929;
-  background: #F6F7F9;
+  background-color: #fff;
+  box-sizing: border-box;
 }
 .rsv-input:focus {
   border-color: #4475F6;
   outline: none;
-  background: #fff;
 }
 .rsv-input::placeholder {
   color: #bbb;
@@ -178,7 +181,7 @@
   align-items: center;
   border: 1px solid #e0e0e0;
   border-radius: 8px;
-  background: #F6F7F9;
+  background: #fff;
   overflow: hidden;
 }
 .input-with-unit .rsv-input {
@@ -200,6 +203,11 @@
   background: #F6F7F9;
   border-radius: 8px;
   padding: 16px 14px 6px;
+}
+.delegate-fields .rsv-input,
+.delegate-fields input[type="text"].rsv-input,
+.delegate-fields input[type="tel"].rsv-input {
+  background-color: #fff;
 }
 
 /* 분배 방식 버튼 */
@@ -298,9 +306,13 @@
   width: 56px;
   font-size: 13px;
 }
-.companion-fields .rsv-input {
-  padding: 10px 12px;
+.companion-fields .rsv-input,
+.companion-fields input[type="text"].rsv-input,
+.companion-fields input[type="tel"].rsv-input {
+  height: 42px;
+  padding: 0 12px;
   font-size: 13px;
+  background-color: #fff;
 }
 .companion-fields .input-unit {
   font-size: 13px;
@@ -424,4 +436,18 @@
   font-size: 16px;
   font-weight: 700;
   text-align: center;
+}
+
+/* 입력 안내 토스트 */
+.input-guide-toast {
+  position: absolute;
+  left: 0;
+  bottom: -24px;
+  font-size: 12px;
+  color: #DC063A;
+  white-space: nowrap;
+  transition: opacity 0.3s;
+}
+.input-guide-toast.fade-out {
+  opacity: 0;
 }
