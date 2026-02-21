@@ -27,7 +27,7 @@
   color: #666;
 }
 .rsv-divider {
-  color: #ddd !important;
+  color: #bbb !important;
   font-size: 12px !important;
 }
 .rsv-summary-price {
@@ -63,7 +63,7 @@
 }
 .rsv-section-desc {
   font-size: 13px;
-  color: #888;
+  color: #666;
   margin-bottom: 12px;
   margin-top: -4px;
 }
@@ -89,10 +89,10 @@
   font-size: 15px;
   font-weight: 600;
   text-align: center;
-  border: 1px solid #e0e0e0;
+  border: 1px solid #d0d0d0;
   border-radius: 0;
   background: #fff;
-  color: #888;
+  color: #777;
   transition: all 0.2s;
 }
 .rsv-type-buttons button + button {
@@ -127,8 +127,8 @@
   border-radius: 20px;
   font-size: 14px;
   font-weight: 500;
-  border: 1px solid #aaa;
-  color: #aaa;
+  border: 1px solid #bbb;
+  color: #777;
   background: #fff;
   text-align: center;
   transition: all 0.2s;
@@ -170,7 +170,7 @@ input[type="tel"].rsv-input {
   outline: none;
 }
 .rsv-input::placeholder {
-  color: #bbb;
+  color: #999;
 }
 .rsv-input.input-error {
   border-color: #DC063A;
@@ -195,7 +195,7 @@ input[type="tel"].rsv-input {
   flex-shrink: 0;
   padding: 0 14px 0 0;
   font-size: 14px;
-  color: #888;
+  color: #666;
 }
 
 /* 위임자 정보 */
@@ -247,14 +247,14 @@ input[type="tel"].rsv-input {
 }
 .equal-detail {
   font-size: 12px;
-  color: #888;
+  color: #666;
 }
 
 /* 섹션 부제목 */
 .rsv-section-sub {
   font-size: 12px;
   font-weight: 400;
-  color: #888;
+  color: #666;
 }
 
 /* 균등 분배 동반자 아이템 */
@@ -332,8 +332,8 @@ input[type="tel"].rsv-input {
   margin-bottom: 16px;
 }
 .companion-add-btn:disabled {
-  border-color: #ccc;
-  color: #ccc;
+  border-color: #bbb;
+  color: #bbb;
   cursor: default;
 }
 
@@ -374,7 +374,7 @@ input[type="tel"].rsv-input {
 .rsv-notice-title {
   font-size: 14px;
   font-weight: 600;
-  color: #888;
+  color: #666;
   margin-bottom: 10px;
 }
 .rsv-notice-list {
@@ -382,7 +382,7 @@ input[type="tel"].rsv-input {
 }
 .rsv-notice-list li {
   font-size: 13px;
-  color: #aaa;
+  color: #777;
   line-height: 1.8;
   padding-left: 12px;
   position: relative;
@@ -395,7 +395,7 @@ input[type="tel"].rsv-input {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #ccc;
+  background: #999;
 }
 
 /* 하단 고정 바 */
@@ -420,7 +420,7 @@ input[type="tel"].rsv-input {
 }
 .rsv-bottom-label {
   font-size: 11px;
-  color: #888;
+  color: #666;
 }
 .rsv-bottom-value {
   font-size: 18px;
