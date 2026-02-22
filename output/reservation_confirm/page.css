@@ -410,7 +410,7 @@ input[type="tel"].rsv-input {
   right: 0;
   background: #fff;
   border-top: 1px solid #e0e0e0;
-  padding: 16px 16px 32px;
+  padding: 16px;
   z-index: 90;
   display: flex;
   align-items: center;
