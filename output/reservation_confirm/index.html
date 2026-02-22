@@ -59,7 +59,7 @@
 
         <!-- 결제자 선택 (오픈카드 선택 시에만 노출) -->
         <div class="rsv-section" id="direct_payer_section" style="display:none">
-          <h4 class="rsv-section-title">결제자 선택</h4>
+          <h4 class="rsv-section-title">결제자 선택 <span class="required-badge">필수</span></h4>
           <div class="tabmenu-buttons">
             <button class="" data-payer="self" onclick="selectPayer(this)" tabindex="-1">내가 결제(전액)</button>
             <button class="" data-payer="split" onclick="selectPayer(this)" tabindex="-1">동반자 나눠 결제</button>
@@ -71,7 +71,7 @@
 
           <!-- 분배 방식 선택 -->
           <div class="rsv-section">
-            <h4 class="rsv-section-title">분배 방식</h4>
+            <h4 class="rsv-section-title">분배 방식 <span class="required-badge">필수</span></h4>
             <div class="tabmenu-buttons rsv-split-buttons">
               <button class="active" data-split="equal" onclick="switchSplitType(this)" tabindex="-1">균등 분배(1/N)</button>
               <button class="" data-split="manual" onclick="switchSplitType(this)" tabindex="-1">직접 입력</button>
@@ -200,7 +200,7 @@
 
         <!-- 결제자 선택 (오픈카드 선택 시에만 노출) -->
         <div class="rsv-section" id="delegate_payer_section" style="display:none">
-          <h4 class="rsv-section-title">결제자 선택</h4>
+          <h4 class="rsv-section-title">결제자 선택 <span class="required-badge">필수</span></h4>
           <div class="tabmenu-buttons">
             <button class="" data-payer="member" onclick="selectDelegatePayer(this)" tabindex="-1">회원 결제(전액)</button>
             <button class="" data-payer="delegate_pay" onclick="selectDelegatePayer(this)" tabindex="-1">위임 결제(전액)</button>
