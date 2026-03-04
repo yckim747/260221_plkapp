@@ -107,10 +107,12 @@ function switchVisitType(th) {
   g_payer_direct = '';
 
   if (type === 'direct') {
+    $('#direct_info_block').slideDown(200);
     $('#delegate_info_block').slideUp(200);
     $('#payer_block').hide();
     $('#companion_section').hide();
   } else {
+    $('#direct_info_block').slideUp(200);
     $('#delegate_info_block').slideDown(200);
     $('#payer_block').hide();
     $('#companion_section').hide();
