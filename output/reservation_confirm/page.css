@@ -98,7 +98,8 @@
 .rsv-cancel-deadline {
   color: #C0392B;
 }
-.rsv-total-fee {
+.rsv-total-fee,
+#rsv_total_fee_disp {
   font-size: 16px;
   font-weight: 700;
   color: #4475F6;
