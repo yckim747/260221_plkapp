@@ -22,31 +22,32 @@
 
       <!-- ===== 기본 정보 ===== -->
       <div class="rsv-block">
-        <h3 class="rsv-block-title">기본 정보</h3>
-        <div class="rsv-info-table">
-          <div class="rsv-info-row">
-            <span class="rsv-info-label">골프장명</span>
-            <span class="rsv-info-value" id="rsv_place_name">오로라골프앤리조트</span>
+        <div class="rsv-card-info">
+          <h3 class="rsv-place-name" id="rsv_place_name">오로라골프앤리조트</h3>
+          <p class="rsv-course-meta">코스명[<span id="rsv_course">LAKE</span>] / 홀정보[<span id="rsv_hole">18홀</span>]</p>
+          <div class="rsv-datetime-grid">
+            <div class="rsv-datetime-box">
+              <span class="rsv-dt-label">라운드 일자</span>
+              <strong class="rsv-dt-value" id="rsv_date">2026.03.25(수)</strong>
+            </div>
+            <div class="rsv-datetime-box">
+              <span class="rsv-dt-label">티타임</span>
+              <strong class="rsv-dt-value" id="rsv_ttime">07:00</strong>
+            </div>
           </div>
-          <div class="rsv-info-row">
-            <span class="rsv-info-label">라운드 일자</span>
-            <span class="rsv-info-value" id="rsv_date">2026-03-25(수) 07:00</span>
-          </div>
-          <div class="rsv-info-row">
-            <span class="rsv-info-label">코스명</span>
-            <span class="rsv-info-value" id="rsv_course">LAKE</span>
-          </div>
-          <div class="rsv-info-row">
-            <span class="rsv-info-label">내장조건</span>
-            <span class="rsv-info-value" id="rsv_condition">4인 필수</span>
-          </div>
-          <div class="rsv-info-row deadline-row">
-            <span class="rsv-info-label">무료 취소 가능 기한</span>
-            <span class="rsv-info-value rsv-cancel-deadline" id="rsv_cancel_deadline">2026-03-16(월) 11:00 까지</span>
-          </div>
-          <div class="rsv-info-row">
-            <span class="rsv-info-label">1인 그린피</span>
-            <span class="rsv-info-value rsv-greenfee-value" id="rsv_green_fee_disp">105,000원</span>
+          <div class="rsv-detail-list">
+            <div class="rsv-detail-row">
+              <span class="rsv-detail-label">조건</span>
+              <span class="rsv-detail-value" id="rsv_condition">4인 필수</span>
+            </div>
+            <div class="rsv-detail-row">
+              <span class="rsv-detail-label">취소 가능기한</span>
+              <span class="rsv-detail-value rsv-cancel-deadline" id="rsv_cancel_deadline">2026-03-16(월) 11:00 까지</span>
+            </div>
+            <div class="rsv-detail-row">
+              <span class="rsv-detail-label">1인 그린피</span>
+              <span class="rsv-detail-value rsv-greenfee-value" id="rsv_green_fee_disp">105,000원</span>
+            </div>
           </div>
         </div>
       </div>
