@@ -20,6 +20,18 @@ $(document).ready(function () {
 
 function initFromParams() {
   g_green_fee = parseInt($('#green_fee').val(), 10) || 105000;
+
+  // 결제금액 = 1인 그린피 × 인원 수
+  var partyCount = parseInt($('#party_count').val(), 10) || 4;
+  var totalFee = g_green_fee * partyCount;
+  $('#rsv_total_fee_disp').text(totalFee.toLocaleString() + '원');
+
+  // 임박 티타임 모드: 현장결제(페이백) 자동 선택 상태로 초기화
+  if ($('body').data('imminent') === true) {
+    g_payment = 'onsite';
+    $('#payment_method').val('onsite');
+    $('#payment_buttons button[data-payment="onsite"]').addClass('active');
+  }
 }
 
 function bindInputEvents() {
