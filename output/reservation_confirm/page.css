@@ -1,57 +1,90 @@
-/* ===== 예약 확인 페이지 전용 스타일 ===== */
+/* ===== 예약 페이지 전용 스타일 ===== */
 
 .rsv-container {
   padding-bottom: 100px;
 }
 
-/* 예약 정보 요약 */
-.rsv-summary {
+/* ===================================================================
+   공통 블록
+   =================================================================== */
+.rsv-block {
   background: #fff;
   padding: 20px 16px;
   border-bottom: 8px solid #F6F7F9;
 }
-.rsv-summary-title {
-  font-size: 18px;
+.rsv-block-title {
+  font-size: 15px;
   font-weight: 700;
   color: #292929;
-  margin-bottom: 8px;
-}
-.rsv-summary-info {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 12px;
-}
-.rsv-summary-info span {
-  font-size: 14px;
-  color: #666;
-}
-.rsv-divider {
-  color: #bbb !important;
-  font-size: 12px !important;
-}
-.rsv-summary-price {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: #EFF4FF;
-  padding: 12px 14px;
-  border-radius: 8px;
-}
-.rsv-price-label {
-  font-size: 14px;
-  color: #666;
-}
-.rsv-price-value {
-  font-size: 18px;
-  font-weight: 700;
-  color: #4475F6;
+  margin-bottom: 14px;
 }
 
-/* 섹션 공통 */
-.rsv-section {
-  padding: 20px 16px 0;
+/* ===================================================================
+   기본 정보 테이블
+   — display:table 방식으로 모든 행의 라벨 열 너비를 동일하게 공유
+   — WCAG AA 명암비 기준 (4.5:1) 준수
+     · 라벨 #444 on #ECEEF3 → 약 8.5:1 ✓
+     · 값   #1a1a1a on #fff   → 약 18:1 ✓
+     · 취소기한 #C0392B on #FFF5F5 → 약 5.0:1 ✓
+   =================================================================== */
+.rsv-info-table {
+  display: table;
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  border: 1px solid #D8DAE2;
+  border-radius: 10px;
+  overflow: hidden;
 }
+.rsv-info-row {
+  display: table-row;
+}
+.rsv-info-row:last-child .rsv-info-label,
+.rsv-info-row:last-child .rsv-info-value {
+  border-bottom: none;
+}
+.rsv-info-label {
+  display: table-cell;
+  width: 1%;             /* 내용을 자르지 않는 최소 너비로 자동 결정 */
+  white-space: nowrap;   /* 모든 행 중 가장 긴 라벨 기준으로 열 너비 통일 */
+  padding: 12px 12px 12px 14px;
+  font-size: 13px;
+  color: #444;
+  font-weight: 500;
+  line-height: 1.5;
+  background: #ECEEF3;
+  border-right: 1px solid #D8DAE2;
+  border-bottom: 1px solid #E4E6ED;
+  vertical-align: middle;
+}
+.rsv-info-value {
+  display: table-cell;
+  padding: 12px 14px 12px 12px;
+  font-size: 14px;
+  color: #1a1a1a;
+  font-weight: 600;
+  line-height: 1.5;
+  word-break: keep-all;
+  background: #fff;
+  border-bottom: 1px solid #E4E6ED;
+  vertical-align: middle;
+}
+.rsv-cancel-deadline {
+  color: #C0392B;
+}
+.rsv-info-row.deadline-row .rsv-info-label {
+  background: #F9EAEA;
+  border-right-color: #E8C8C8;
+  border-bottom-color: #E8C8C8;
+}
+.rsv-info-row.deadline-row .rsv-info-value {
+  background: #FFF5F5;
+  border-bottom-color: #E8C8C8;
+}
+
+/* ===================================================================
+   섹션 공통
+   =================================================================== */
 .rsv-section-title {
   font-size: 15px;
   font-weight: 700;
@@ -67,6 +100,11 @@
   margin-bottom: 12px;
   margin-top: -4px;
 }
+.rsv-section-sub {
+  font-size: 12px;
+  font-weight: 400;
+  color: #888;
+}
 .required-badge {
   font-size: 11px;
   font-weight: 600;
@@ -76,70 +114,78 @@
   border-radius: 4px;
 }
 
-/* 예약 유형 버튼 */
-.rsv-type-buttons {
+/* ===================================================================
+   예약 유형 버튼 (pill 쌍)
+   — .rsv-block .tabmenu-buttons button (명시도 0-2-1)보다
+     .rsv-block .rsv-type-buttons button (명시도 0-2-1, 후위)가 우선 적용
+   — 컨테이너 border 제거 → 이중 줄박스 방지
+   =================================================================== */
+.rsv-block .rsv-type-buttons {
   display: flex;
-  gap: 0;
-  border-radius: 8px;
-  overflow: hidden;
+  gap: 8px;
+  border: none;
+  border-radius: 0;
+  overflow: visible;
 }
-.rsv-type-buttons button {
+.rsv-block .rsv-type-buttons button {
   flex: 1;
-  padding: 14px 0;
+  padding: 13px 0;
+  border-radius: 24px;
   font-size: 15px;
   font-weight: 600;
-  text-align: center;
-  border: 1px solid #d0d0d0;
-  border-radius: 0;
+  border: 1.5px solid #C8C8C8;
   background: #fff;
-  color: #777;
+  color: #888;
   transition: all 0.2s;
 }
-.rsv-type-buttons button + button {
-  border-left: none;
-}
-.rsv-type-buttons button:first-child {
-  border-radius: 8px 0 0 8px;
-}
-.rsv-type-buttons button:last-child {
-  border-radius: 0 8px 8px 0;
-}
-.rsv-type-buttons button.active {
+.rsv-block .rsv-type-buttons button.active {
   background: #4475F6;
   color: #fff;
   border-color: #4475F6;
 }
 
-/* 폼 영역 */
-.rsv-form {
-  border-bottom: 8px solid #F6F7F9;
-  padding-bottom: 20px;
-}
-
-/* pill 버튼 (결제방법/결제자) */
-.rsv-section .tabmenu-buttons {
+/* ===================================================================
+   Pill 버튼 (결제방법 / 결제자 공통) — 전역 tabmenu-buttons 재정의
+   =================================================================== */
+.rsv-block .tabmenu-buttons {
   display: flex;
   gap: 8px;
 }
-.rsv-section .tabmenu-buttons button {
+.rsv-block .tabmenu-buttons button {
   flex: 1;
   padding: 12px 0;
   border-radius: 20px;
   font-size: 14px;
   font-weight: 500;
-  border: 1px solid #bbb;
-  color: #777;
+  border: 1px solid #C8C8C8;
+  color: #888;
   background: #fff;
   text-align: center;
-  transition: all 0.2s;
+  transition: all 0.18s;
 }
-.rsv-section .tabmenu-buttons button.active {
+.rsv-block .tabmenu-buttons button.active {
   background: #4475F6;
   color: #fff;
   border-color: #4475F6;
 }
 
-/* 입력 필드 */
+/* ===================================================================
+   위임자 정보 필드
+   =================================================================== */
+.delegate-fields {
+  background: #F6F7F9;
+  border-radius: 8px;
+  padding: 16px 14px 6px;
+}
+.delegate-fields .rsv-input,
+.delegate-fields input[type="text"].rsv-input,
+.delegate-fields input[type="tel"].rsv-input {
+  background-color: #fff;
+}
+
+/* ===================================================================
+   입력 필드
+   =================================================================== */
 .input-row {
   display: flex;
   align-items: center;
@@ -172,7 +218,7 @@ input[type="tel"].rsv-input {
   outline: none;
 }
 .rsv-input::placeholder {
-  color: #999;
+  color: #bbb;
 }
 .rsv-input.input-error {
   border-color: #DC063A;
@@ -200,36 +246,16 @@ input[type="tel"].rsv-input {
   color: #666;
 }
 
-/* 위임자 정보 */
-.delegate-fields {
-  background: #F6F7F9;
-  border-radius: 8px;
-  padding: 16px 14px 6px;
+/* ===================================================================
+   동반자 섹션
+   =================================================================== */
+#companion_section {
+  border-top: none;
 }
-.delegate-fields .rsv-input,
-.delegate-fields input[type="text"].rsv-input,
-.delegate-fields input[type="tel"].rsv-input {
-  background-color: #fff;
-}
-
-/* 분배 방식 버튼 */
 .rsv-split-buttons {
   display: flex;
   gap: 8px;
 }
-
-/* 분배 패널 */
-.split-panel {
-  /* show/hide로 전환 */
-}
-
-/* 균등 분배 인원 버튼 */
-.equal-count-buttons {
-  display: flex;
-  gap: 8px;
-}
-
-/* 균등 분배 금액 안내 */
 .equal-info {
   background: #EFF4FF;
   border-radius: 8px;
@@ -248,17 +274,8 @@ input[type="tel"].rsv-input {
 .equal-detail {
   font-size: 13px;
   font-weight: 400;
-  color: #292929;
+  color: #555;
 }
-
-/* 섹션 부제목 */
-.rsv-section-sub {
-  font-size: 12px;
-  font-weight: 400;
-  color: #666;
-}
-
-/* 균등 분배 동반자 아이템 */
 .equal-companion-item {
   margin-top: 12px;
 }
@@ -272,11 +289,6 @@ input[type="tel"].rsv-input {
   font-size: 14px;
   font-weight: 600;
   color: #292929;
-}
-
-/* 동반자 섹션 */
-.rsv-companion-section {
-  /* slideToggle로 제어 */
 }
 .companion-item {
   background: #F6F7F9;
@@ -321,8 +333,6 @@ input[type="tel"].rsv-input {
 .companion-fields .input-unit {
   font-size: 13px;
 }
-
-/* 동반자 추가 버튼 */
 .companion-add-btn {
   width: 100%;
   padding: 12px 0;
@@ -340,13 +350,12 @@ input[type="tel"].rsv-input {
   color: #bbb;
   cursor: default;
 }
-
-/* 금액 합계 */
 .companion-total {
   background: #fff;
   border: 1px solid #e0e0e0;
   border-radius: 8px;
   padding: 14px;
+  margin-top: 4px;
 }
 .companion-total-row {
   display: flex;
@@ -371,78 +380,124 @@ input[type="tel"].rsv-input {
   font-size: 16px;
 }
 
-/* 유의사항 */
-.rsv-notice {
-  padding: 20px 16px;
-}
-.rsv-notice-title {
-  font-size: 14px;
-  font-weight: 600;
-  color: #666;
+/* ===================================================================
+   공지사항 / 이용규정 / 골프장 공지사항
+   =================================================================== */
+.rsv-notice-block .rsv-block-title {
   margin-bottom: 10px;
 }
 .rsv-notice-list {
   padding-left: 0;
+  margin: 0;
 }
 .rsv-notice-list li {
-  font-size: 13px;
-  color: #777;
+  font-size: 14px;
+  color: #555;
   line-height: 1.8;
-  padding-left: 12px;
+  padding-left: 14px;
   position: relative;
+  word-break: keep-all;
 }
 .rsv-notice-list li::before {
-  content: '';
+  content: '-';
   position: absolute;
   left: 0;
-  top: 10px;
-  width: 4px;
-  height: 4px;
-  border-radius: 50%;
-  background: #999;
+  top: 0;
+  color: #888;
 }
 
-/* 하단 고정 바 */
+/* ===================================================================
+   약관 동의
+   =================================================================== */
+.rsv-terms-block {
+  border-bottom: none;
+}
+
+/* 전역 스타일의 이미지 기반 체크박스 무효화 후 네이티브 표시 */
+.rsv-terms-check {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+  cursor: pointer;
+}
+.rsv-terms-check input[type="checkbox"] {
+  position: static !important;
+  opacity: 1 !important;
+  width: 20px !important;
+  height: 20px !important;
+  min-width: 20px;
+  flex-shrink: 0;
+  accent-color: #4475F6;
+  cursor: pointer;
+  margin: 0;
+  border-radius: 4px;
+}
+.rsv-terms-check input[type="checkbox"] + span {
+  padding-left: 0 !important;
+  font-size: 15px;
+  font-weight: 700;
+  color: #292929;
+  cursor: pointer;
+}
+.rsv-terms-check input[type="checkbox"] + span::before {
+  display: none !important;
+}
+.rsv-terms-text {
+  font-size: 13px;
+  color: #555;
+  line-height: 1.8;
+  word-break: keep-all;
+}
+.rsv-terms-text .hyperlink {
+  color: #4475F6;
+  text-decoration: underline;
+}
+
+/* ===================================================================
+   하단 고정 바
+   =================================================================== */
 .rsv-bottom-bar {
   position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
   background: #fff;
-  border-top: 1px solid #e0e0e0;
+  border-top: 1px solid #E8E8E8;
   padding: 16px;
   z-index: 90;
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
   box-sizing: border-box;
 }
-.rsv-bottom-price {
-  display: flex;
-  flex-direction: column;
-  flex-shrink: 0;
-}
-.rsv-bottom-label {
-  font-size: 11px;
-  color: #666;
-}
-.rsv-bottom-value {
-  font-size: 18px;
-  font-weight: 700;
-  color: #4475F6;
+.rsv-cancel-btn {
+  flex: 1;
+  height: 52px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  text-align: center;
+  border: 1px solid #C8C8C8;
+  background: #fff;
+  color: #777;
+  cursor: pointer;
 }
 .rsv-submit-btn {
-  flex: 1;
-  height: 48px;
-  line-height: 48px;
+  flex: 2;
+  height: 52px;
+  line-height: 52px;
   padding: 0;
   border-radius: 8px;
   font-size: 16px;
   font-weight: 700;
   text-align: center;
+  cursor: pointer;
 }
 
-/* 입력 안내 토스트 (화면 하단 고정) */
+/* ===================================================================
+   입력 안내 토스트
+   =================================================================== */
 .input-guide-toast {
   position: fixed;
   bottom: 100px;
