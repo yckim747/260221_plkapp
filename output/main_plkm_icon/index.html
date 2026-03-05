@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>메인 PLKm 아이콘 - Pacific Links Korea</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+  <style>
+    /* ===== 기본 리셋 ===== */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont,
+        system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo",
+        "Noto Sans KR", "Malgun Gothic", sans-serif;
+      font-size: 14px;
+      color: #292929;
+      background-color: #f6f7f9;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+    a { text-decoration: none; color: inherit; }
+
+    /* ===== 원본 profile-section 재현 ===== */
+    .profile-section {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 16px 14px;
+      background: #fff;
+    }
+    .profile-name {
+      font-size: 18px;
+      font-weight: 400;
+      color: #292929;
+      line-height: 1.4;
+      cursor: pointer;
+    }
+    .profile-name-highlight {
+      font-weight: 700;
+      color: #E8604C;
+    }
+    .profile-change-group {
+      margin-top: 2px;
+    }
+    .profile-desc {
+      font-size: 13px;
+      color: #999;
+      font-weight: 400;
+    }
+    .profile-icon {
+      flex-shrink: 0;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      overflow: hidden;
+      cursor: pointer;
+    }
+    .profile-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* ===== 매니저 전용: PLKm 배지 ===== */
+    .plkm-badge {
+      display: inline-block;
+      padding: 4px 10px;
+      background-color: #04599e;
+      color: #fff;
+      font-size: 11px;
+      font-weight: 600;
+      line-height: 1;
+      border-radius: 12px;
+      text-decoration: none;
+      letter-spacing: 0.5px;
+      vertical-align: middle;
+      white-space: nowrap;
+      margin-left: 6px;
+    }
+
+    /* ===== 미리보기 안내 ===== */
+    .preview-notice {
+      margin: 12px 16px;
+      padding: 12px 14px;
+      background: #fff8e1;
+      border: 1px solid #ffe082;
+      border-radius: 8px;
+      font-size: 13px;
+      color: #5d4037;
+      line-height: 1.6;
+    }
+    .preview-notice strong {
+      color: #e65100;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 미리보기 안내 -->
+  <div class="preview-notice">
+    <strong>[미리보기]</strong> 매니저 접속 시 회원명 옆에 PLKm 배지가 표시됩니다.<br>
+    아래는 매니저 로그인 상태를 시뮬레이션한 화면입니다.
+  </div>
+
+  <!-- ===== 원본 profile-section 마크업 (PLKm 배지 추가) ===== -->
+  <section class="profile-section">
+    <div>
+      <p onclick="location.href='/new/mypage/info'" class="profile-name">
+        <span class="profile-name-highlight">김영철IT</span> 회원님
+
+        <!-- ★ 매니저 전용: PLKm 바로가기 배지 ★ -->
+        <a href="https://plkm.pacificlinks.co.kr" target="_blank"
+           class="plkm-badge" id="plkm_manager_link"
+           style="display:inline-block;" tabindex="-1">
+          PLKm
+        </a>
+
+      </p>
+      <div class="profile-change-group">
+        <p class="profile-desc">개인</p>
+      </div>
+    </div>
+    <div class="profile-icon" onclick="location.href='/new/plkapp_menu'">
+      <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='96' height='96'%3E%3Crect width='96' height='96' rx='48' fill='%23e0dcd8'/%3E%3Ccircle cx='48' cy='36' r='14' fill='%23c4beb8'/%3E%3Cpath d='M16 88c0-18 14-28 32-28s32 10 32 28' fill='%23c4beb8'/%3E%3C/svg%3E" alt="프로필 아이콘">
+    </div>
+  </section>
+
+  <script src="https://code.jquery.com/jquery-1.12.3.min.js"></script>
+  <script>
+    // ===== 매니저 접속 판별 =====
+    // 실제 서비스: 서버에서 매니저 여부 판별 후 처리
+    // 예시: if (isManager) { $('#plkm_manager_link').show(); }
+    // 미리보기에서는 display:inline-block으로 바로 표시
+  </script>
+
+</body>
+</html>
