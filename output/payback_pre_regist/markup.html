@@ -1,0 +1,218 @@
+<!-- ==================== 고정 헤더 ==================== -->
+<section class="header booking_header">
+  <a href="/new/booking_self" class="header-logo" tabindex="-1">
+    <img src="/mobile/zones/new/img/departure/arrow.svg" alt="뒤로가기">
+  </a>
+  <h1 class="header-title">페이백 사전 접수</h1>
+</section>
+
+<!-- ==================== 메인 콘텐츠 ==================== -->
+<div class="booking_live">
+  <div class="container pb-container">
+
+    <!-- ===== 확정 문자 자동입력 (선택) ===== -->
+    <div class="pb-block">
+      <div class="pb-section-header">
+        <h4 class="pb-section-title">확정 문자 자동입력</h4>
+        <span class="pb-section-optional">선택</span>
+      </div>
+
+      <!-- 붙여넣기 카드 -->
+      <div class="pb-paste-card">
+        <p class="pb-paste-card-title">확정 문자가 있으신가요?</p>
+        <p class="pb-paste-card-desc">골프장에서 받은 예약 확정 문자를 붙여넣으면<br>예약 정보가 자동으로 채워집니다.</p>
+        <button type="button" class="pb-paste-card-btn" onclick="doPaste()" tabindex="-1">문자 붙여넣기</button>
+      </div>
+
+      <!-- 직접 입력 토글 -->
+      <button type="button" class="pb-manual-toggle" id="pb_manual_toggle" onclick="toggleManualArea()" tabindex="-1">
+        문자 직접 입력하기 <span class="toggle-arrow">&#9660;</span>
+      </button>
+
+      <!-- 펼쳐지는 textarea 영역 -->
+      <div class="pb-message-expand" id="pb_message_expand">
+        <textarea class="pb-message-area" id="pb_message"
+          placeholder="예약 확정 문자를 여기에 붙여넣거나 입력해 주세요.&#10;&#10;예시)&#10;[오로라골프앤리조트]&#10;예약자: 홍길동&#10;날짜: 2026/03/25&#10;시간: 07:00&#10;코스: LAKE"
+          tabindex="-1"></textarea>
+        <div class="pb-message-btns">
+          <button type="button" class="pb-msg-convert-btn" onclick="doConvert()" tabindex="-1">자동 변환</button>
+          <button type="button" class="pb-msg-reset-btn" onclick="doReset()" tabindex="-1">초기화</button>
+        </div>
+      </div>
+
+      <!-- 파싱 결과 피드백 -->
+      <div class="pb-parse-result" id="pb_parse_result"></div>
+    </div>
+
+    <!-- ===== 예약 정보 (항상 활성) ===== -->
+    <div class="pb-block" id="pb_form_block">
+      <div class="pb-section-header">
+        <h4 class="pb-section-title">예약 정보</h4>
+      </div>
+      <p class="pb-section-desc">예약 정보를 입력해 주세요. 문자를 붙여넣으면 자동으로 채워집니다.</p>
+
+      <!-- 골프장 -->
+      <div class="pb-form-group">
+        <label class="pb-form-label">
+          <span class="pb-status-icon status-empty" id="status_place">-</span>
+          골프장명 <span class="pb-form-required">*</span>
+        </label>
+        <div class="pb-search-input-wrap">
+          <input type="text" class="pb-input" id="pb_place_name"
+            placeholder="골프장을 검색해 주세요"
+            readonly onclick="openGolfSearch()" tabindex="-1">
+          <img src="/mobile/zones/new/img/departure/search.svg" alt="검색" class="pb-search-icon">
+        </div>
+      </div>
+
+      <!-- 예약자명 -->
+      <div class="pb-form-group">
+        <label class="pb-form-label">
+          <span class="pb-status-icon status-empty" id="status_name">-</span>
+          예약자명 <span class="pb-form-required">*</span>
+        </label>
+        <input type="text" class="pb-input" id="pb_rs_nm"
+          placeholder="예약자 이름 입력" tabindex="-1">
+      </div>
+
+      <!-- 예약 날짜 -->
+      <div class="pb-form-group">
+        <label class="pb-form-label">
+          <span class="pb-status-icon status-empty" id="status_date">-</span>
+          예약 날짜 <span class="pb-form-required">*</span>
+        </label>
+        <div class="pb-date-input-wrap">
+          <input type="text" class="pb-input" id="pb_t_day"
+            placeholder="날짜를 선택해 주세요"
+            readonly onclick="openCalendar()" tabindex="-1">
+          <span class="pb-date-icon">&#128197;</span>
+        </div>
+      </div>
+
+      <!-- 예약 시간 -->
+      <div class="pb-form-group">
+        <label class="pb-form-label">
+          <span class="pb-status-icon status-empty" id="status_time">-</span>
+          예약 시간 <span class="pb-form-required">*</span>
+        </label>
+        <input type="time" class="pb-time-input" id="pb_t_time" tabindex="-1">
+      </div>
+
+      <!-- 코스 -->
+      <div class="pb-form-group">
+        <label class="pb-form-label">
+          <span class="pb-status-icon status-empty" id="status_course">-</span>
+          코스 <span style="font-size:11px;color:#bbb;font-weight:400">(선택)</span>
+        </label>
+        <input type="text" class="pb-input" id="pb_course"
+          placeholder="코스명 입력 (예: LAKE, EAST)" tabindex="-1">
+      </div>
+
+      <!-- 예약번호 -->
+      <div class="pb-form-group">
+        <label class="pb-form-label">
+          <span class="pb-status-icon status-empty" id="status_rsno">-</span>
+          예약번호 <span style="font-size:11px;color:#bbb;font-weight:400">(선택)</span>
+        </label>
+        <div class="pb-rs-no-wrap">
+          <input type="text" class="pb-input" id="pb_rs_no"
+            placeholder="예약번호 입력" tabindex="-1">
+        </div>
+      </div>
+
+      <p class="pb-form-hint">* 문자를 붙여넣으면 위 항목이 자동으로 채워집니다.</p>
+    </div>
+
+    <!-- ===== 약관 동의 & 접수 ===== -->
+    <div class="pb-block">
+      <div class="pb-section-header">
+        <h4 class="pb-section-title">약관 동의</h4>
+      </div>
+
+      <label class="inp_chk pb-terms-check" for="pb_agree">
+        <input type="checkbox" id="pb_agree" name="pb_agree">
+        <span class="txt">약관 동의</span>
+      </label>
+      <p class="pb-terms-text">
+        본인은 본 페이백 접수에 대하여
+        <a href="/policy/rule" target="_blank" class="hyperlink" tabindex="-1">PLK 예약취소/위약규정</a>,
+        <a href="/policy/info" target="_blank" class="hyperlink" tabindex="-1">개인정보 수집 및 이용</a>,
+        <a href="/policy/agree" target="_blank" class="hyperlink" tabindex="-1">개인 정보 제3자 제공 내용</a>을
+        확인하였으며, 접수 진행에 동의합니다.
+      </p>
+    </div>
+
+  </div>
+</div>
+
+<!-- ==================== 하단 고정 버튼 ==================== -->
+<div class="pb-bottom-bar">
+  <button type="button" class="pb-cancel-btn" onclick="history.back()" tabindex="-1">취소</button>
+  <button type="button" class="pb-submit-btn btn-fill btn-disabled" id="pb_submit_btn"
+    onclick="submitPreRegist()" disabled tabindex="-1">접수하기</button>
+</div>
+
+<!-- ==================== 골프장 검색 바텀시트 ==================== -->
+<div class="pb-search-sheet" id="pb_search_sheet">
+  <div class="pb-search-overlay" onclick="closeGolfSearch()"></div>
+  <div class="pb-search-panel">
+    <div class="pb-search-panel-header">
+      <span class="pb-search-panel-title">골프장 검색</span>
+      <button type="button" class="pb-search-panel-close" onclick="closeGolfSearch()" tabindex="-1">&times;</button>
+    </div>
+    <div class="pb-search-panel-input">
+      <input type="text" id="pb_search_input" placeholder="골프장명을 입력해 주세요" tabindex="-1">
+    </div>
+    <div class="pb-search-list" id="pb_search_list"></div>
+  </div>
+</div>
+
+<!-- ==================== 달력 팝업 ==================== -->
+<div class="pb-calendar-popup" id="pb_calendar_popup">
+  <div class="pb-calendar-inner">
+    <div class="pb-calendar-container" id="pb_calendar_container"></div>
+    <button type="button" class="pb-calendar-close-btn btn-fill" onclick="closeCalendar()" tabindex="-1">닫기</button>
+  </div>
+</div>
+
+<!-- ==================== Alert 팝업 ==================== -->
+<div id="alert_pop" class="primary_popup agree_popup" style="display:none">
+  <div class="pop_close_bg"></div>
+  <div class="popup_content">
+    <div class="txt" id="alert_pop_title">메시지</div>
+    <button class="close btn-fill popup_s1_btn1" type="button" onclick="closeAlert()" tabindex="-1">확인</button>
+  </div>
+</div>
+
+<!-- ==================== Confirm 팝업 ==================== -->
+<div class="mpop popup_s1n" id="confirm_pop" style="display:none">
+  <div class="popup_s1_inner">
+    <div class="info1 popup_s4_contents" id="confirm_pop_title">메시지</div>
+    <div class="popup_s2_btn2">
+      <a class="cancel_50" id="confirm_no" onclick="closeConfirm()" tabindex="-1">취소</a>
+      <a class="half_50" id="confirm_ok" data-func="" tabindex="-1">확인</a>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== 로딩 화면 ==================== -->
+<div class="loading-container" id="loadingScreen" style="display:none">
+  <div style="width:100%;height:200px;"></div>
+  <img class="logo-img" src="/mobile/zones/img/mo_logo.png"
+       style="width:60%;margin:auto auto" alt="Pacific Links Korea">
+  <div class="loading-bar">
+    <div class="loading-progress" id="loadingProgress" style="width: 0%;"></div>
+  </div>
+  <div class="loading-text" id="loadingText" style="color: rgb(51, 51, 51);">접수 처리 중...</div>
+</div>
+
+<!-- ==================== Hidden Form ==================== -->
+<form id="pre_regist_form" method="post" action="/new/booking_self/ajax_reservation_new">
+  <input type="hidden" name="gf_place_seq" id="h_gf_place_seq" value="">
+  <input type="hidden" name="rs_nm" id="h_rs_nm" value="">
+  <input type="hidden" name="t_day" id="h_t_day" value="">
+  <input type="hidden" name="t_time" id="h_t_time" value="">
+  <input type="hidden" name="course" id="h_course" value="">
+  <input type="hidden" name="rs_no" id="h_rs_no" value="">
+  <input type="hidden" name="message" id="h_message" value="">
+</form>

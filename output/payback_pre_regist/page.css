@@ -1,0 +1,637 @@
+/* ===== 페이백 사전 접수 페이지 전용 스타일 ===== */
+
+.pb-container {
+  padding-bottom: 100px;
+}
+
+/* ===================================================================
+   공통 블록
+   =================================================================== */
+.pb-block {
+  background: #fff;
+  padding: 20px 16px;
+  border-bottom: 8px solid #F6F7F9;
+}
+.pb-block:last-of-type {
+  border-bottom: none;
+}
+
+/* ===================================================================
+   섹션 타이틀
+   =================================================================== */
+.pb-section-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+.pb-section-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #292929;
+}
+.pb-section-optional {
+  font-size: 11px;
+  font-weight: 500;
+  color: #4475F6;
+  background: #EDF2FF;
+  padding: 3px 8px;
+  border-radius: 4px;
+}
+.pb-section-desc {
+  font-size: 13px;
+  color: #888;
+  margin-top: -6px;
+  margin-bottom: 14px;
+  line-height: 1.5;
+}
+
+/* ===================================================================
+   문자 붙여넣기 영역 (접이식)
+   =================================================================== */
+.pb-paste-card {
+  background: #F8FAFF;
+  border: 1px dashed #B0C4F6;
+  border-radius: 10px;
+  padding: 20px 16px;
+  text-align: center;
+}
+.pb-paste-card-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #292929;
+  margin-bottom: 4px;
+}
+.pb-paste-card-desc {
+  font-size: 12px;
+  color: #888;
+  margin-bottom: 14px;
+  line-height: 1.5;
+}
+.pb-paste-card-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  width: 100%;
+  height: 46px;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  background: #4475F6;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+.pb-paste-card-btn:active {
+  background: #3560D4;
+}
+
+/* 직접 입력 토글 링크 */
+.pb-manual-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  margin-top: 14px;
+  font-size: 13px;
+  color: #888;
+  cursor: pointer;
+  border: none;
+  background: none;
+  width: 100%;
+  padding: 4px 0;
+}
+.pb-manual-toggle:active {
+  color: #4475F6;
+}
+.pb-manual-toggle .toggle-arrow {
+  display: inline-block;
+  transition: transform 0.2s;
+  font-size: 10px;
+}
+.pb-manual-toggle.expanded .toggle-arrow {
+  transform: rotate(180deg);
+}
+
+/* 펼쳐지는 textarea 영역 */
+.pb-message-expand {
+  display: none;
+  margin-top: 14px;
+}
+.pb-message-expand.active {
+  display: block;
+}
+.pb-message-area {
+  width: 100%;
+  min-height: 120px;
+  padding: 14px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 14px;
+  color: #292929;
+  line-height: 1.6;
+  resize: vertical;
+  box-sizing: border-box;
+  font-family: inherit;
+}
+.pb-message-area:focus {
+  border-color: #4475F6;
+  outline: none;
+}
+.pb-message-area::placeholder {
+  color: #bbb;
+}
+.pb-message-btns {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+}
+.pb-message-btns button {
+  flex: 1;
+  height: 40px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+}
+.pb-msg-convert-btn {
+  background: #4475F6;
+  color: #fff;
+}
+.pb-msg-reset-btn {
+  background: #fff;
+  color: #777;
+  border: 1px solid #C8C8C8 !important;
+}
+
+/* 파싱 결과 토스트 */
+.pb-parse-result {
+  display: none;
+  margin-top: 12px;
+  padding: 12px 14px;
+  border-radius: 8px;
+  font-size: 13px;
+  line-height: 1.6;
+}
+.pb-parse-result.result-success {
+  display: block;
+  background: #E8F5E9;
+  color: #2E7D32;
+  border: 1px solid #A5D6A7;
+}
+.pb-parse-result.result-partial {
+  display: block;
+  background: #FFF8E1;
+  color: #F57F17;
+  border: 1px solid #FFE082;
+}
+.pb-parse-result.result-fail {
+  display: block;
+  background: #FFEBEE;
+  color: #C62828;
+  border: 1px solid #EF9A9A;
+}
+
+/* ===================================================================
+   예약 정보 폼
+   =================================================================== */
+.pb-form-group {
+  margin-bottom: 14px;
+}
+.pb-form-group:last-child {
+  margin-bottom: 0;
+}
+.pb-form-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: #666;
+  margin-bottom: 6px;
+  font-weight: 500;
+}
+.pb-form-required {
+  color: #DC063A;
+  font-weight: 700;
+}
+.pb-status-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  font-size: 10px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+.pb-status-icon.status-ok {
+  background: #4CAF50;
+  color: #fff;
+}
+.pb-status-icon.status-warn {
+  background: #FF9800;
+  color: #fff;
+}
+.pb-status-icon.status-empty {
+  display: none;
+}
+.pb-input {
+  width: 100%;
+  height: 48px;
+  padding: 0 14px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 14px;
+  color: #292929;
+  background: #fff;
+  box-sizing: border-box;
+}
+.pb-input:focus {
+  border-color: #4475F6;
+  outline: none;
+}
+.pb-input::placeholder {
+  color: #bbb;
+}
+.pb-input.input-error {
+  border-color: #DC063A;
+}
+.pb-input.input-filled {
+  background: #F8FBFF;
+  border-color: #B0C7E8;
+}
+.pb-input:read-only {
+  background: #F6F7F9;
+  color: #555;
+}
+.pb-form-hint {
+  font-size: 12px;
+  color: #4475F6;
+  margin-top: 10px;
+  line-height: 1.5;
+  padding: 10px 14px;
+  background: #F8FAFF;
+  border-radius: 6px;
+}
+
+/* 골프장 검색 입력 */
+.pb-search-input-wrap {
+  position: relative;
+}
+.pb-search-input-wrap .pb-input {
+  padding-right: 40px;
+}
+.pb-search-icon {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 18px;
+  height: 18px;
+  opacity: 0.4;
+}
+
+/* 날짜 입력 */
+.pb-date-input-wrap {
+  position: relative;
+}
+.pb-date-input-wrap .pb-input {
+  padding-right: 40px;
+  cursor: pointer;
+}
+.pb-date-icon {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 18px;
+  color: #999;
+  pointer-events: none;
+}
+
+/* 시간 입력 */
+.pb-time-input {
+  width: 100%;
+  height: 48px;
+  padding: 0 14px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 14px;
+  color: #292929;
+  background: #fff;
+  box-sizing: border-box;
+}
+.pb-time-input:focus {
+  border-color: #4475F6;
+  outline: none;
+}
+
+/* 예약번호 */
+.pb-rs-no-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.pb-rs-no-wrap .pb-input {
+  flex: 1;
+}
+
+/* ===================================================================
+   골프장 검색 바텀시트
+   =================================================================== */
+.pb-search-sheet {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 200;
+  display: none;
+}
+.pb-search-sheet.active {
+  display: block;
+}
+.pb-search-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.5);
+}
+.pb-search-panel {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #fff;
+  border-radius: 16px 16px 0 0;
+  max-height: 70vh;
+  display: flex;
+  flex-direction: column;
+  animation: slideUp 0.25s ease-out;
+}
+@keyframes slideUp {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+.pb-search-panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px;
+  border-bottom: 1px solid #F2F2F2;
+}
+.pb-search-panel-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #292929;
+}
+.pb-search-panel-close {
+  width: 28px;
+  height: 28px;
+  border: none;
+  background: none;
+  font-size: 20px;
+  color: #999;
+  cursor: pointer;
+}
+.pb-search-panel-input {
+  margin: 12px 16px;
+  position: relative;
+}
+.pb-search-panel-input input {
+  width: 100%;
+  height: 44px;
+  padding: 0 14px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+.pb-search-panel-input input:focus {
+  border-color: #4475F6;
+  outline: none;
+}
+.pb-search-list {
+  flex: 1;
+  overflow-y: auto;
+  padding: 0 16px 16px;
+  -webkit-overflow-scrolling: touch;
+}
+.pb-search-item {
+  padding: 14px 0;
+  border-bottom: 1px solid #F6F7F9;
+  font-size: 14px;
+  color: #292929;
+  cursor: pointer;
+}
+.pb-search-item:active {
+  background: #F6F7F9;
+}
+.pb-search-item em {
+  font-style: normal;
+  color: #4475F6;
+  font-weight: 600;
+}
+.pb-search-empty {
+  text-align: center;
+  padding: 40px 0;
+  font-size: 14px;
+  color: #999;
+}
+
+/* ===================================================================
+   약관 동의
+   =================================================================== */
+.pb-terms-check {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+  cursor: pointer;
+}
+.pb-terms-check input[type="checkbox"] {
+  position: static !important;
+  opacity: 1 !important;
+  width: 20px !important;
+  height: 20px !important;
+  min-width: 20px;
+  flex-shrink: 0;
+  accent-color: #4475F6;
+  cursor: pointer;
+  margin: 0;
+}
+.pb-terms-check input[type="checkbox"] + span {
+  padding-left: 0 !important;
+  font-size: 15px;
+  font-weight: 700;
+  color: #292929;
+  cursor: pointer;
+}
+.pb-terms-check input[type="checkbox"] + span::before {
+  display: none !important;
+}
+.pb-terms-text {
+  font-size: 13px;
+  color: #555;
+  line-height: 1.8;
+  word-break: keep-all;
+}
+.pb-terms-text .hyperlink {
+  color: #4475F6;
+  text-decoration: underline;
+}
+
+/* ===================================================================
+   하단 고정 바
+   =================================================================== */
+.pb-bottom-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #fff;
+  border-top: 1px solid #E8E8E8;
+  padding: 16px;
+  z-index: 90;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  box-sizing: border-box;
+}
+.pb-cancel-btn {
+  flex: 1;
+  height: 52px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  text-align: center;
+  border: 1px solid #C8C8C8;
+  background: #fff;
+  color: #777;
+  cursor: pointer;
+}
+.pb-submit-btn {
+  flex: 2;
+  height: 52px;
+  line-height: 52px;
+  padding: 0;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 700;
+  text-align: center;
+  cursor: pointer;
+}
+.pb-submit-btn:disabled,
+.pb-submit-btn.btn-disabled {
+  background: #ccc !important;
+  border-color: #ccc !important;
+  color: #fff !important;
+  cursor: not-allowed;
+}
+
+/* ===================================================================
+   달력 팝업
+   =================================================================== */
+.pb-calendar-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 210;
+  display: none;
+  background: rgba(0,0,0,0.5);
+  align-items: flex-end;
+  justify-content: center;
+}
+.pb-calendar-popup.active {
+  display: flex;
+}
+.pb-calendar-inner {
+  background: #fff;
+  border-radius: 16px 16px 0 0;
+  width: 100%;
+  max-height: 80vh;
+  overflow-y: auto;
+  padding: 20px 16px;
+  -webkit-overflow-scrolling: touch;
+}
+.pb-calendar-container {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 2px;
+  text-align: center;
+}
+.pb-calendar-container .month-header {
+  grid-column: 1 / -1;
+  font-size: 16px;
+  font-weight: 700;
+  color: #292929;
+  padding: 16px 0 10px;
+}
+.pb-calendar-container .day-header {
+  font-size: 12px;
+  color: #888;
+  padding: 8px 0;
+  font-weight: 500;
+}
+.pb-calendar-container .day {
+  padding: 10px 0;
+  font-size: 14px;
+  color: #292929;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.pb-calendar-container .day:active {
+  background: #EDF2FF;
+}
+.pb-calendar-container .day.sunday { color: #E53935; }
+.pb-calendar-container .day.saturday { color: #1E88E5; }
+.pb-calendar-container .day.holiday { color: #E53935; }
+.pb-calendar-container .day.today {
+  font-weight: 700;
+  color: #4475F6;
+}
+.pb-calendar-container .day.current {
+  background: #4475F6;
+  color: #fff;
+  font-weight: 700;
+}
+.pb-calendar-container .day.past-day {
+  color: #ddd;
+  pointer-events: none;
+}
+.pb-calendar-close-btn {
+  width: 100%;
+  height: 48px;
+  margin-top: 16px;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+/* ===================================================================
+   입력 안내 토스트
+   =================================================================== */
+.pb-toast {
+  position: fixed;
+  bottom: 100px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(41, 41, 41, 0.9);
+  color: #fff;
+  font-size: 13px;
+  padding: 10px 20px;
+  border-radius: 20px;
+  white-space: nowrap;
+  z-index: 300;
+  transition: opacity 0.3s;
+}
+.pb-toast.fade-out {
+  opacity: 0;
+}
