@@ -17,6 +17,14 @@
       <img src="/mobile/zones/new/img/departure/arrow.svg" alt="뒤로가기">
     </a>
     <h1 class="header-title">페이백 사전 접수</h1>
+    <a href="#" class="pb-prev-voucher-btn" onclick="togglePageView(this); return false;" tabindex="-1">
+      <svg class="pb-prev-voucher-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"></polyline><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path></svg>
+      기존 페이지 보기
+    </a>
+    <a href="#" class="pb-new-regist-btn" onclick="togglePageView(this); return false;" tabindex="-1" style="display:none">
+      <svg class="pb-prev-voucher-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"></polyline><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path></svg>
+      새로운 접수 보기
+    </a>
   </section>
 
   <!-- ==================== 메인 콘텐츠 ==================== -->
@@ -233,5 +241,18 @@
   <!-- ==================== Scripts ==================== -->
   <script src="https://code.jquery.com/jquery-1.12.3.min.js"></script>
   <script src="script.js"></script>
+  <script>
+    function togglePageView(el) {
+      var prevBtn = document.querySelector('.pb-prev-voucher-btn');
+      var newBtn = document.querySelector('.pb-new-regist-btn');
+      if (el === prevBtn) {
+        prevBtn.style.display = 'none';
+        newBtn.style.display = 'inline-flex';
+      } else {
+        newBtn.style.display = 'none';
+        prevBtn.style.display = 'inline-flex';
+      }
+    }
+  </script>
 </body>
 </html>

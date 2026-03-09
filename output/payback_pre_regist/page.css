@@ -1,5 +1,51 @@
 /* ===== 페이백 사전 접수 페이지 전용 스타일 ===== */
 
+/* ===================================================================
+   헤더 내 기존 증권 보기 버튼
+   =================================================================== */
+.pb-prev-voucher-btn,
+.pb-new-regist-btn {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  min-width: 130px;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+  text-decoration: none;
+  white-space: nowrap;
+  box-sizing: border-box;
+}
+.pb-prev-voucher-btn {
+  border: 1px solid #d0d0d0;
+  background: #fff;
+  color: #555;
+}
+.pb-prev-voucher-btn:active {
+  background: #f5f5f5;
+}
+.pb-prev-voucher-icon {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+}
+
+/* 새로운 접수 보기 버튼 (포인트 컬러) */
+.pb-new-regist-btn {
+  border: none;
+  background: #4475F6;
+  color: #fff;
+}
+.pb-new-regist-btn:active {
+  background: #3560D4;
+}
+
 .pb-container {
   padding-bottom: 100px;
 }
