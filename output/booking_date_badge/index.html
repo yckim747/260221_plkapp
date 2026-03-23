@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>실시간예약 - Pacific Links Korea</title>
+  <link rel="stylesheet" href="../../assets/css/reset.css">
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="stylesheet" href="../../assets/css/add.css">
+  <link rel="stylesheet" href="page.css">
+</head>
+<body>
+
+<!-- 헤더 -->
+<section class="header booking_header">
+  <a href="/new" class="header-logo" tabindex="-1"><img src="/mobile/zones/new/img/departure/arrow.svg" alt="로고"></a>
+  <h1 class="header-title">실시간예약</h1>
+</section>
+
+<div class="booking_live">
+  <div class="container search-container">
+    <div class="booking_calendar_box">
+      <div class="booking_calendar">
+        <div class="cal_month">
+          <span>03월</span>
+        </div>
+        <ul class="cal_list">
+          <li class="list_date " data-value="20260324">
+            <a onclick="change_day('20260324','','',this)" class="" tabindex="-1">
+              <span class="date_txt01">화</span>
+              <span class="date_txt02">24</span>
+            </a>
+          </li>
+          <li class="list_date " data-value="20260325">
+            <a onclick="change_day('20260325','','',this)" class="" tabindex="-1">
+              <span class="date_txt01">수</span>
+              <span class="date_txt02">25</span>
+            </a>
+          </li>
+          <li class="list_date active" data-value="20260326">
+            <a onclick="change_day('20260326','','',this)" class="" tabindex="-1">
+              <span class="date_txt01">목</span>
+              <span class="date_txt02">26</span>
+            </a>
+          </li>
+          <li class="list_date " data-value="20260327">
+            <a onclick="change_day('20260327','','',this)" class="" tabindex="-1">
+              <span class="date_txt01">금</span>
+              <span class="date_txt02">27</span>
+            </a>
+          </li>
+          <li class="list_date " data-value="20260328">
+            <a onclick="change_day('20260328','','',this)" class="txt_sat" tabindex="-1">
+              <span class="date_txt01">토</span>
+              <span class="date_txt02">28</span>
+            </a>
+          </li>
+          <li class="list_date " data-value="20260329">
+            <a onclick="change_day('20260329','','',this)" class="txt_sun" tabindex="-1">
+              <span class="date_txt01">일</span>
+              <span class="date_txt02">29</span>
+            </a>
+          </li>
+          <li class="list_date " data-value="20260330">
+            <a onclick="change_day('20260330','','',this)" class="" tabindex="-1">
+              <span class="date_txt01">월</span>
+              <span class="date_txt02">30</span>
+            </a>
+          </li>
+          <li class="list_date " data-value="20260331">
+            <a onclick="change_day('20260331','','',this)" class="" tabindex="-1">
+              <span class="date_txt01">화</span>
+              <span class="date_txt02">31</span>
+            </a>
+          </li>
+          <li class="list_date " data-value="20260401">
+            <a onclick="change_day('20260401','','',this)" class="" tabindex="-1">
+              <span class="date_txt01">수</span>
+              <span class="date_txt02">4/1</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 검색바 -->
+    <section>
+      <div class="search-bar">
+        <input type="text" placeholder="골프장명, 지역명을 검색해주세요."
+               id="search_text" value="" class="search-input">
+        <img src="/mobile/zones/new/img/departure/search.svg"
+             alt="검색" id="search_icon" class="search-icon">
+      </div>
+    </section>
+
+    <!-- 지역 탭메뉴 -->
+    <section class="tabmenu-section region-section">
+      <div class="tabmenu-row">
+        <div class="tabmenu-buttons">
+          <button data-cate="" data-area="all" class="all-btn" tabindex="-1">전체</button>
+          <button data-cate="1,2" data-area="capital-area" class="active" tabindex="-1">서울/경기/인천</button>
+          <button data-cate="3" data-area="gangwon" class="active" tabindex="-1">강원</button>
+          <button data-cate="4" data-area="chungcheong" class="" tabindex="-1">충청</button>
+          <button data-cate="5" data-area="jeolla" class="" tabindex="-1">전라</button>
+          <button data-cate="6" data-area="gyeongsang" class="" tabindex="-1">경상</button>
+          <button data-cate="7" data-area="jeju" class="" tabindex="-1">제주</button>
+          <span onclick="button_clear();">모두해제
+            <img src="/mobile/zones/new/img/main/recent_delete_icon.png" style="width:13px;" alt="삭제 아이콘">
+          </span>
+        </div>
+      </div>
+      <div class="detail-search">
+        <button type="button" class="detail-search-btn" tabindex="-1">상세검색</button>
+        <img class="detail-search-arrow" src="/mobile/zones/new/img/place/arrow_icon.png"
+             onclick="$(this).prev().click()" alt="화살표 아이콘">
+      </div>
+    </section>
+  </div>
+
+  <div class="container list-container">
+    <section class="card-section" id="ajax_list">
+      <div class="card-section-head">
+        <span class="total">총 <em>22</em>건</span>
+        <label for="plk_recommend_chk" class="plk_recommend_chk">
+          <input type="checkbox" name="plk_recommend_chk" id="plk_recommend_chk">
+          <span class="txt">PLK 추천만 보기</span>
+        </label>
+      </div>
+
+      <div class="card-list">
+
+        <!-- ===== 카드 1: 레이크사이드컨트리클럽 ===== -->
+        <div class="card">
+          <div class="card-date-bar">
+            <span class="card-date-bar-label">라운드일</span>
+            <span class="card-date-bar-value">3월 26일 목요일</span>
+          </div>
+          <!-- 뱃지 -->
+          <div class="badge_group">
+            <span class="new">신규</span>
+            <span class="hot">인기</span>
+          </div>
+          <div class="card-header">
+            <h3 class="card-title">레이크사이드컨트리클럽</h3>
+            <a href="https://map.naver.com/p/search/경기 용인시 처인구 모현읍 능원로 181" target="_blank" class="card-distance" tabindex="-1">
+              <img src="/mobile/zones/new/img/place/distance_icon.png" alt="거리 아이콘">
+              <span>23.6km</span>
+            </a>
+          </div>
+          <div class="card-info">
+            <div class="card-info-txt card-info-txt-type02">
+              <div>
+                <span>경기도 용인시 </span>
+              </div>
+              <div>
+                <span>대중제 (36H)</span> <span>회원제 (18H)</span>
+              </div>
+            </div>
+            <span class="detail-view" onclick="get_rs_cnt(77,this);" data-rs_cnt="N">상세보기 <img src="/mobile/zones/new/img/place/detail_icon.png" alt="플러스 아이콘"></span>
+          </div>
+          <div class="card-info-detail">
+            <h4>골프장 정보</h4>
+            <img class="card-close" src="/mobile/zones/new/img/place/close_icon.png" alt="닫기 버튼">
+            <div class="card-info-item">
+              <span class="info-title">나의 라운드</span>
+              <span class="info-text rs_cnt">0회</span>
+            </div>
+            <div class="card-info-item address-item">
+              <span class="info-title">주소</span>
+              <div class="info-text-group">
+                <span class="info-text">경기 용인시 처인구 모현읍 능원로 181</span>
+                <a href="https://map.naver.com/p/search/경기 용인시 처인구 모현읍 능원로 181" target="_blank" class="hyperlink" tabindex="-1">지도보기</a>
+              </div>
+            </div>
+            <div class="card-info-item">
+              <span class="info-title">홈페이지</span>
+              <div class="info-text"><a class="hyperlink" href="http://www.lakesidecc.co.kr/" target="_blank" tabindex="-1">바로가기</a></div>
+            </div>
+          </div>
+          <div class="card-price-group">
+            <span class="card-price-txt">199,000원 ~</span>
+            <span class="card-price-team">10팀</span>
+          </div>
+          <section class="tabmenu-section time-section">
+            <div class="tabmenu-row">
+              <div class="tabmenu-buttons">
+                <button onclick="time_select(this,'','')" class="all-btn active" tabindex="-1">전체</button>
+                <button onclick="time_select(this,'0001','0830')" tabindex="-1">~08:30</button>
+                <button onclick="time_select(this,'1301','1430')" tabindex="-1">13:01~14:30</button>
+              </div>
+            </div>
+          </section>
+          <ul class="time_box">
+            <li class="" onclick="reservation('','R','77','06:42','1','199000', this,'','','','','0','20260317110000','');" data-time="0642">
+              <span class="course">남OUT</span>
+              <div class="time_group">
+                <span class="time">06:42</span>
+                <span class="time_type">PLK 추천</span>
+              </div>
+              <span class="price">199,000원</span>
+            </li>
+            <li class="" onclick="reservation('','R','77','06:42','2','199000', this,'','','','','0','20260317110000','');" data-time="0642">
+              <span class="course">남IN</span>
+              <div class="time_group">
+                <span class="time">06:42</span>
+                <span class="time_type">PLK 추천</span>
+              </div>
+              <span class="price">199,000원</span>
+            </li>
+            <li class="" onclick="reservation('','R','77','06:42','4','199000', this,'','','','','0','20260317110000','');" data-time="0642">
+              <span class="course">동IN</span>
+              <div class="time_group">
+                <span class="time">06:42</span>
+                <span class="time_type">PLK 추천</span>
+              </div>
+              <span class="price">199,000원</span>
+            </li>
+            <li class="" onclick="reservation('','R','77','06:42','5','240000', this,'','','','','0','20260317110000','');" data-time="0642">
+              <span class="course">서OUT</span>
+              <div class="time_group">
+                <span class="time">06:42</span>
+                <span class="time_type">PLK 추천</span>
+              </div>
+              <span class="price">240,000원</span>
+            </li>
+            <li class="" onclick="reservation('','R','77','06:56','2','199000', this,'','','','','0','20260317110000','');" data-time="0656">
+              <span class="course">남IN</span>
+              <div class="time_group">
+                <span class="time">06:56</span>
+                <span class="time_type">PLK 추천</span>
+              </div>
+              <span class="price">199,000원</span>
+            </li>
+            <li class="" onclick="reservation('','R','77','06:56','3','199000', this,'','','','','0','20260317110000','');" data-time="0656">
+              <span class="course">동OUT</span>
+              <div class="time_group">
+                <span class="time">06:56</span>
+                <span class="time_type">PLK 추천</span>
+              </div>
+              <span class="price">199,000원</span>
+            </li>
+            <li class="" onclick="reservation('','R','77','06:56','6','240000', this,'','','','','0','20260317110000','');" data-time="0656">
+              <span class="course">서IN</span>
+              <div class="time_group">
+                <span class="time">06:56</span>
+                <span class="time_type">PLK 추천</span>
+              </div>
+              <span class="price">240,000원</span>
+            </li>
+            <li class="" onclick="reservation('','R','77','07:03','3','199000', this,'','','','','0','20260317110000','');" data-time="0703">
+              <span class="course">동OUT</span>
+              <div class="time_group">
+                <span class="time">07:03</span>
+                <span class="time_type">PLK 추천</span>
+              </div>
+              <span class="price">199,000원</span>
+            </li>
+            <li class="" onclick="reservation('','R','77','07:03','5','240000', this,'','','','','0','20260317110000','');" data-time="0703">
+              <span class="course">서OUT</span>
+              <div class="time_group">
+                <span class="time">07:03</span>
+                <span class="time_type">PLK 추천</span>
+              </div>
+              <span class="price">240,000원</span>
+            </li>
+            <li class="" onclick="reservation('','R','77','13:49','4','199000', this,'','','','','0','20260317110000','');" data-time="1349">
+              <span class="course">동IN</span>
+              <div class="time_group">
+                <span class="time">13:49</span>
+                <span class="time_type">PLK 추천</span>
+              </div>
+              <span class="price">199,000원</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- ===== 카드 2: 플라자용인 ===== -->
+        <div class="card">
+          <div class="card-date-bar">
+            <span class="card-date-bar-label">라운드일</span>
+            <span class="card-date-bar-value">3월 26일 목요일</span>
+          </div>
+          <div class="card-header">
+            <h3 class="card-title">플라자용인</h3>
+            <a href="https://map.naver.com/p/search/경기도 용인시 처인구 남사면 봉무로 153번길 79" target="_blank" class="card-distance" tabindex="-1">
+              <img src="/mobile/zones/new/img/place/distance_icon.png" alt="거리 아이콘">
+              <span>41.7km</span>
+            </a>
+          </div>
+          <div class="card-info">
+            <div class="card-info-txt card-info-txt-type02">
+              <div>
+                <span>경기도 용인시 </span>
+              </div>
+              <div>
+                <span>회원제 (36H)</span>
+              </div>
+            </div>
+            <span class="detail-view" onclick="get_rs_cnt(216,this);" data-rs_cnt="N">상세보기 <img src="/mobile/zones/new/img/place/detail_icon.png" alt="플러스 아이콘"></span>
+          </div>
+          <div class="card-info-detail">
+            <h4>골프장 정보</h4>
+            <img class="card-close" src="/mobile/zones/new/img/place/close_icon.png" alt="닫기 버튼">
+            <div class="card-info-item">
+              <span class="info-title">나의 라운드</span>
+              <span class="info-text rs_cnt">0회</span>
+            </div>
+            <div class="card-info-item address-item">
+              <span class="info-title">주소</span>
+              <div class="info-text-group">
+                <span class="info-text">경기도 용인시 처인구 남사면 봉무로 153번길 79</span>
+                <a href="https://map.naver.com/p/search/경기도 용인시 처인구 남사면 봉무로 153번길 79" target="_blank" class="hyperlink" tabindex="-1">지도보기</a>
+              </div>
+            </div>
+            <div class="card-info-item">
+              <span class="info-title">홈페이지</span>
+              <div class="info-text"><a class="hyperlink" href="http://www.plazacc.co.kr/" target="_blank" tabindex="-1">바로가기</a></div>
+            </div>
+          </div>
+          <div class="card-price-group">
+            <span class="card-price-txt">210,000원 ~</span>
+            <span class="card-price-team">40팀</span>
+          </div>
+          <section class="tabmenu-section time-section">
+            <div class="tabmenu-row">
+              <div class="tabmenu-buttons">
+                <button onclick="time_select(this,'','')" class="all-btn active" tabindex="-1">전체</button>
+                <button onclick="time_select(this,'0001','0830')" tabindex="-1">~08:30</button>
+                <button onclick="time_select(this,'0831','1030')" tabindex="-1">08:31~10:30</button>
+                <button onclick="time_select(this,'1301','1430')" tabindex="-1">13:01~14:30</button>
+                <button onclick="time_select(this,'1431','2359')" tabindex="-1">14:30~</button>
+              </div>
+            </div>
+          </section>
+          <ul class="time_box">
+            <li class="" onclick="reservation('','R','216','06:20','0230','210000', this,'202601752411','','','','0','20260312110000','');" data-time="0620">
+              <span class="course">Lion Out</span>
+              <div class="time_group">
+                <span class="time">06:20</span>
+                <span class="time_type">PLK 추천</span>
+              </div>
+              <span class="price">210,000원</span>
+            </li>
+            <li class="" onclick="reservation('','R','216','06:21','0240','210000', this,'202601753099','','','','0','20260312110000','');" data-time="0621">
+              <span class="course">Lion In</span>
+              <div class="time_group">
+                <span class="time">06:21</span>
+                <span class="time_type">PLK 추천</span>
+              </div>
+              <span class="price">210,000원</span>
+            </li>
+            <li class="" onclick="reservation('','R','216','06:22','0250','210000', this,'202601753784','','','','0','20260312110000','');" data-time="0622">
+              <span class="course">Tiger Out</span>
+              <div class="time_group">
+                <span class="time">06:22</span>
+                <span class="time_type">PLK 추천</span>
+              </div>
+              <span class="price">210,000원</span>
+            </li>
+            <li class="" onclick="reservation('','R','216','06:28','0230','210000', this,'202601752412','','','','0','20260312110000','');" data-time="0628">
+              <span class="course">Lion Out</span>
+              <div class="time_group">
+                <span class="time">06:28</span>
+                <span class="time_type">PLK 추천</span>
+              </div>
+              <span class="price">210,000원</span>
+            </li>
+            <li class="" onclick="reservation('','R','216','06:29','0240','210000', this,'202601753100','','','','0','20260312110000','');" data-time="0629">
+              <span class="course">Lion In</span>
+              <div class="time_group">
+                <span class="time">06:29</span>
+                <span class="time_type">PLK 추천</span>
+              </div>
+              <span class="price">210,000원</span>
+            </li>
+            <li class="" onclick="reservation('','R','216','06:30','0250','210000', this,'202601753785','','','','0','20260312110000','');" data-time="0630">
+              <span class="course">Tiger Out</span>
+              <div class="time_group">
+                <span class="time">06:30</span>
+                <span class="time_type">PLK 추천</span>
+              </div>
+              <span class="price">210,000원</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- ===== 카드 3: 토요일 예시 ===== -->
+        <div class="card">
+          <div class="card-date-bar card-date-bar-sat">
+            <span class="card-date-bar-label">라운드일</span>
+            <span class="card-date-bar-value">3월 28일 토요일</span>
+          </div>
+          <div class="badge_group">
+            <span class="event">이벤트</span>
+          </div>
+          <div class="card-header">
+            <h3 class="card-title">오크밸리CC</h3>
+            <a href="https://map.naver.com/p/search/강원도 원주시 지정면" target="_blank" class="card-distance" tabindex="-1">
+              <img src="/mobile/zones/new/img/place/distance_icon.png" alt="거리 아이콘">
+              <span>95.3km</span>
+            </a>
+          </div>
+          <div class="card-info">
+            <div class="card-info-txt card-info-txt-type02">
+              <div>
+                <span>강원도 원주시</span>
+              </div>
+              <div>
+                <span>회원제 (27H)</span>
+              </div>
+            </div>
+            <span class="detail-view" onclick="get_rs_cnt(305,this);" data-rs_cnt="N">상세보기 <img src="/mobile/zones/new/img/place/detail_icon.png" alt="플러스 아이콘"></span>
+          </div>
+          <div class="card-info-detail">
+            <h4>골프장 정보</h4>
+            <img class="card-close" src="/mobile/zones/new/img/place/close_icon.png" alt="닫기 버튼">
+            <div class="card-info-item">
+              <span class="info-title">나의 라운드</span>
+              <span class="info-text rs_cnt">3회</span>
+            </div>
+          </div>
+          <div class="card-price-group">
+            <span class="card-price-txt">280,000원 ~</span>
+            <span class="card-price-team">5팀</span>
+          </div>
+          <section class="tabmenu-section time-section">
+            <div class="tabmenu-row">
+              <div class="tabmenu-buttons">
+                <button onclick="time_select(this,'','')" class="all-btn active" tabindex="-1">전체</button>
+                <button onclick="time_select(this,'0001','0830')" tabindex="-1">~08:30</button>
+                <button onclick="time_select(this,'0831','1030')" tabindex="-1">08:31~10:30</button>
+              </div>
+            </div>
+          </section>
+          <ul class="time_box">
+            <li class="plk_recommend" onclick="reservation('','R','305','07:15','1','280000', this,'','','','','0','20260325110000','');" data-time="0715">
+              <span class="course">Pine</span>
+              <div class="time_group">
+                <span class="time">07:15</span>
+                <span class="time_type">PLK 추천</span>
+              </div>
+              <span class="price">280,000원</span>
+            </li>
+            <li class="" onclick="reservation('','R','305','08:30','2','290000', this,'','','','','0','20260325110000','');" data-time="0830">
+              <span class="course">Oak</span>
+              <div class="time_group">
+                <span class="time">08:30</span>
+                <span class="time_type">PLK 추천</span>
+              </div>
+              <span class="price">290,000원</span>
+            </li>
+            <li class="" onclick="reservation('','R','305','09:45','3','275000', this,'','','','','0','20260325110000','');" data-time="0945">
+              <span class="course">Valley</span>
+              <div class="time_group">
+                <span class="time">09:45</span>
+                <span class="time_type">PLK 추천</span>
+              </div>
+              <span class="price">275,000원</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- ===== 카드 4: 일요일 예시 ===== -->
+        <div class="card">
+          <div class="card-date-bar card-date-bar-sun">
+            <span class="card-date-bar-label">라운드일</span>
+            <span class="card-date-bar-value">3월 29일 일요일</span>
+          </div>
+          <div class="card-header">
+            <h3 class="card-title">블루원상주CC</h3>
+            <a href="https://map.naver.com/p/search/경상북도 상주시" target="_blank" class="card-distance" tabindex="-1">
+              <img src="/mobile/zones/new/img/place/distance_icon.png" alt="거리 아이콘">
+              <span>148.2km</span>
+            </a>
+          </div>
+          <div class="card-info">
+            <div class="card-info-txt card-info-txt-type02">
+              <div>
+                <span>경상북도 상주시</span>
+              </div>
+              <div>
+                <span>대중제 (18H)</span>
+              </div>
+            </div>
+            <span class="detail-view" onclick="get_rs_cnt(410,this);" data-rs_cnt="N">상세보기 <img src="/mobile/zones/new/img/place/detail_icon.png" alt="플러스 아이콘"></span>
+          </div>
+          <div class="card-info-detail">
+            <h4>골프장 정보</h4>
+            <img class="card-close" src="/mobile/zones/new/img/place/close_icon.png" alt="닫기 버튼">
+            <div class="card-info-item">
+              <span class="info-title">나의 라운드</span>
+              <span class="info-text rs_cnt">1회</span>
+            </div>
+          </div>
+          <div class="card-price-group">
+            <span class="card-price-txt">155,000원 ~</span>
+            <span class="card-price-team">8팀</span>
+          </div>
+          <section class="tabmenu-section time-section">
+            <div class="tabmenu-row">
+              <div class="tabmenu-buttons">
+                <button onclick="time_select(this,'','')" class="all-btn active" tabindex="-1">전체</button>
+                <button onclick="time_select(this,'0001','0830')" tabindex="-1">~08:30</button>
+              </div>
+            </div>
+          </section>
+          <ul class="time_box">
+            <li class="" onclick="reservation('','R','410','06:50','1','155000', this,'','','','','0','20260326110000','');" data-time="0650">
+              <span class="course">A코스</span>
+              <div class="time_group">
+                <span class="time">06:50</span>
+                <span class="time_type">PLK 추천</span>
+              </div>
+              <span class="price">155,000원</span>
+            </li>
+            <li class="plk_recommend" onclick="reservation('','R','410','07:30','1','160000', this,'','','','','0','20260326110000','');" data-time="0730">
+              <span class="course">A코스</span>
+              <div class="time_group">
+                <span class="time">07:30</span>
+                <span class="time_type">PLK 추천</span>
+              </div>
+              <span class="price">160,000원</span>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+    </section>
+  </div>
+</div>
+
+<!-- 퀵메뉴 -->
+<div class="quick_menu" style="bottom: 7px;">
+  <span class="back_btn"><img src="/mobile/zones/new/img/main/back_on_ico.png" alt="뒤로가기"></span>
+  <span class="top_btn"><img src="/mobile/zones/new/img/main/top_off_ico.png" alt="위로가기"></span>
+</div>
+
+<script src="https://code.jquery.com/jquery-1.12.3.min.js"></script>
+</body>
+</html>

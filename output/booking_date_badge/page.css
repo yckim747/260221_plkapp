@@ -1,0 +1,42 @@
+/* ===== 라운드일 날짜 바 ===== */
+.card-date-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #EFF4FF;
+  border-radius: 8px;
+  padding: 10px 14px;
+  margin: -4px -2px 12px -2px;
+}
+
+.card-date-bar-label {
+  font-size: 12px;
+  font-weight: 500;
+  color: #7C7C7C;
+  flex-shrink: 0;
+}
+
+.card-date-bar-value {
+  font-size: 15px;
+  font-weight: 700;
+  color: #04599e;
+  letter-spacing: -0.3px;
+}
+
+/* 토요일 */
+.card-date-bar-sat {
+  background: #EEF2FF;
+}
+
+.card-date-bar-sat .card-date-bar-value {
+  color: #2b6cb0;
+}
+
+/* 일요일/공휴일 */
+.card-date-bar-sun {
+  background: #FFF0F0;
+}
+
+.card-date-bar-sun .card-date-bar-value {
+  color: #e53e3e;
+}
