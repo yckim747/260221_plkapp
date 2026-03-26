@@ -675,6 +675,10 @@ input[type="tel"].rsv-input {
   line-height: 1.5;
   word-break: keep-all;
 }
+.rsv-callout strong {
+  font-weight: 700;
+  color: inherit;
+}
 /* 화살표 꼬리 공통 */
 .rsv-callout-right::before,
 .rsv-callout-left::before {
@@ -695,6 +699,28 @@ input[type="tel"].rsv-input {
 /* 왼쪽(오픈카드) 버튼 위치에 꼬리 */
 .rsv-callout-left::before {
   left: calc(25% - 7px);
+}
+
+/* ===================================================================
+   결제 비활성 말풍선 (현장결제 버튼 방향)
+   =================================================================== */
+.rsv-callout-onsite {
+  margin-top: 10px;
+  background: #F2F2F2;
+  border-color: #DDDDDD;
+  color: #999;
+}
+.rsv-callout-onsite::before {
+  content: '';
+  position: absolute;
+  top: -8px;
+  right: calc(25% - 7px);
+  width: 14px;
+  height: 14px;
+  background: #F2F2F2;
+  border-top: 1px solid #DDDDDD;
+  border-left: 1px solid #DDDDDD;
+  transform: rotate(45deg);
 }
 
 /* ===================================================================

@@ -114,6 +114,7 @@
           <button class="" data-dpayer="self" onclick="selectDelegatePayer(this)" tabindex="-1">내가 결제</button>
           <button class="" data-dpayer="delegate" onclick="selectDelegatePayer(this)" tabindex="-1">위임자가 결제</button>
         </div>
+        <div class="rsv-callout" id="delegate_payer_guide" style="display:none"></div>
       </div>
 
       <!-- ===== 결제 방법 ===== -->
@@ -123,6 +124,7 @@
           <button class="" data-payment="opencard" onclick="selectPayment(this)" tabindex="-1">오픈카드</button>
           <button class="" data-payment="onsite" onclick="selectPayment(this)" tabindex="-1">현장결제(페이백)</button>
         </div>
+        <div class="rsv-callout rsv-callout-onsite" id="onsite_disabled_guide" style="display:none">위임자 결제 시 선택 가능한 옵션입니다</div>
       </div>
 
       <!-- ===== 결제자 선택 (본인방문 + 오픈카드 시 노출) ===== -->

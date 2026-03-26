@@ -212,8 +212,13 @@ function selectDelegatePayer(th) {
     $('#payment_buttons button[data-payment="opencard"]').addClass('active');
     g_payment = 'opencard';
     $('#payment_method').val('opencard');
+    $('#delegate_payer_guide').html('라운드 후 <strong>회원님</strong>에게 결제 링크가 발송됩니다').show();
+    $('#onsite_disabled_guide').show();
+  } else {
+    // 위임자가 결제: 오픈카드/현장결제 둘 다 선택 가능
+    $('#delegate_payer_guide').html('라운드 후 <strong>위임자</strong>에게 결제 링크가 발송됩니다').show();
+    $('#onsite_disabled_guide').hide();
   }
-  // 위임자가 결제: 오픈카드/현장결제 둘 다 선택 가능 (초기화 상태)
 
   $('#payment_block').slideDown(200);
 }
