@@ -702,14 +702,16 @@ input[type="tel"].rsv-input {
 }
 
 /* ===================================================================
-   결제 비활성 말풍선 (현장결제 버튼 방향)
+   결제 비활성 말풍선 공통
    =================================================================== */
-.rsv-callout-onsite {
+.rsv-callout-onsite,
+.rsv-callout-opencard {
   margin-top: 10px;
   background: #F2F2F2;
   border-color: #DDDDDD;
   color: #999;
 }
+/* 화살표: 오른쪽(현장결제) 방향 */
 .rsv-callout-onsite::before {
   content: '';
   position: absolute;
@@ -721,6 +723,121 @@ input[type="tel"].rsv-input {
   border-top: 1px solid #DDDDDD;
   border-left: 1px solid #DDDDDD;
   transform: rotate(45deg);
+}
+/* 화살표: 왼쪽(오픈카드) 방향 */
+.rsv-callout-opencard::before {
+  content: '';
+  position: absolute;
+  top: -8px;
+  left: calc(25% - 7px);
+  width: 14px;
+  height: 14px;
+  background: #F2F2F2;
+  border-top: 1px solid #DDDDDD;
+  border-left: 1px solid #DDDDDD;
+  transform: rotate(45deg);
+}
+
+/* ===================================================================
+   예약 최종 확인 팝업
+   =================================================================== */
+.confirm-rsv-wrap {
+  width: 100%;
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+}
+.confirm-rsv-body {
+  text-align: center;
+  padding: 28px 20px 20px;
+}
+.confirm-rsv-icon {
+  width: 52px;
+  height: 52px;
+  margin: 0 auto 14px;
+  background: #EFF4FF;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.confirm-rsv-place {
+  font-size: 15px;
+  font-weight: 700;
+  color: #292929;
+  line-height: 1.4;
+}
+.confirm-rsv-datetime {
+  font-size: 16px;
+  font-weight: 700;
+  color: #04599e;
+  margin-top: 2px;
+}
+.confirm-rsv-question {
+  font-size: 14px;
+  color: #666;
+  margin-top: 8px;
+  margin-bottom: 16px;
+}
+.confirm-rsv-summary {
+  background: #F7F8FA;
+  border-radius: 8px;
+  padding: 12px 16px;
+  text-align: left;
+}
+.confirm-rsv-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 7px 0;
+  font-size: 13px;
+  color: #292929;
+}
+.confirm-rsv-row + .confirm-rsv-row {
+  border-top: 1px solid #EEEEEE;
+}
+.confirm-rsv-label {
+  color: #999;
+  flex-shrink: 0;
+  min-width: 60px;
+}
+.confirm-rsv-value {
+  text-align: right;
+  word-break: keep-all;
+  font-weight: 500;
+}
+.confirm-rsv-row-total {
+  margin-top: 2px;
+  padding-top: 8px;
+  border-top: 1px solid #DDD !important;
+}
+.confirm-rsv-price {
+  font-weight: 700;
+  color: #04599e;
+  font-size: 15px;
+}
+/* 버튼 영역 */
+.confirm-rsv-buttons {
+  display: flex;
+  border-top: 1px solid #E5E5E5;
+}
+.confirm-rsv-btn {
+  flex: 1;
+  display: block;
+  padding: 15px 0;
+  text-align: center;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.confirm-rsv-btn-cancel {
+  background: #F7F8FA;
+  color: #555;
+  border-right: 1px solid #E5E5E5;
+}
+.confirm-rsv-btn-ok {
+  background: #04599e;
+  color: #fff;
 }
 
 /* ===================================================================

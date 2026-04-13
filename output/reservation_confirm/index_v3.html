@@ -52,6 +52,10 @@
               <span class="rsv-detail-label">결제금액</span>
               <span class="rsv-detail-value rsv-total-fee"><span id="rsv_total_fee_disp">420,000원</span><span class="rsv-total-fee-suffix">(그린피 합계)</span></span>
             </div>
+            <div class="rsv-detail-row">
+              <span class="rsv-detail-label">결제방법</span>
+              <span class="rsv-detail-value">하단참고</span>
+            </div>
           </div>
         </div>
       </div>
@@ -71,22 +75,11 @@
         <div class="rsv-info-table">
           <div class="rsv-info-row">
             <span class="rsv-info-label">이름</span>
-            <span class="rsv-info-value" id="direct_name">김영철</span>
+            <span class="rsv-info-value" id="direct_name">김영철IT</span>
           </div>
           <div class="rsv-info-row">
             <span class="rsv-info-label">연락처</span>
-            <span class="rsv-info-value">
-              <label class="phone-select-option" for="phone_subscriber">
-                <input type="radio" name="direct_phone" id="phone_subscriber" value="010-8778-7907" checked>
-                <span class="phone-select-text">010-8778-7907</span>
-                <span class="phone-select-tag">가입자</span>
-              </label>
-              <label class="phone-select-option" for="phone_agent">
-                <input type="radio" name="direct_phone" id="phone_agent" value="010-1234-5678">
-                <span class="phone-select-text">010-1234-5678</span>
-                <span class="phone-select-tag">대리인</span>
-              </label>
-            </span>
+            <span class="rsv-info-value" id="direct_phone">010-8778-7907</span>
           </div>
         </div>
       </div>
@@ -125,104 +118,9 @@
           <button class="" data-payment="onsite" onclick="selectPayment(this)" tabindex="-1">현장결제(페이백)</button>
         </div>
         <div class="rsv-callout rsv-callout-onsite" id="onsite_disabled_guide" style="display:none">위임자 결제 시 선택 가능한 옵션입니다</div>
+        <div class="rsv-callout" id="payment_unavailable_guide" style="display:none">이 결제방법은 선택 불가능한 골프장입니다</div>
       </div>
 
-      <!-- ===== 결제자 선택 (본인방문 + 오픈카드 시 노출) ===== -->
-      <div class="rsv-block" id="payer_block" style="display:none">
-        <h4 class="rsv-section-title">결제자 선택 <span class="required-badge">필수</span></h4>
-        <div class="tabmenu-buttons">
-          <button class="" data-payer="self" onclick="selectPayer(this)" tabindex="-1">내가 결제(전액)</button>
-          <button class="" data-payer="split" onclick="selectPayer(this)" tabindex="-1">동반자 나눠 결제</button>
-        </div>
-      </div>
-
-      <!-- ===== 동반자 나눠 결제 영역 (조건부) ===== -->
-      <div class="rsv-block" id="companion_section" style="display:none">
-
-        <!-- 분배 방식 -->
-        <h4 class="rsv-section-title">분배 방식 <span class="required-badge">필수</span></h4>
-        <div class="tabmenu-buttons rsv-split-buttons" style="margin-bottom:20px">
-          <button class="active" data-split="equal" onclick="switchSplitType(this)" tabindex="-1">균등 분배(1/N)</button>
-          <button class="" data-split="manual" onclick="switchSplitType(this)" tabindex="-1">직접 입력</button>
-        </div>
-
-        <!-- 균등 분배 패널 -->
-        <div class="split-panel" id="panel_equal">
-          <h4 class="rsv-section-title">인원 선택 <span class="rsv-section-sub">(예약자 포함)</span> <span class="required-badge">필수</span></h4>
-          <div class="tabmenu-buttons equal-count-buttons">
-            <button class="" data-count="2" onclick="selectEqualCount(this)" tabindex="-1">2명</button>
-            <button class="" data-count="3" onclick="selectEqualCount(this)" tabindex="-1">3명</button>
-            <button class="" data-count="4" onclick="selectEqualCount(this)" tabindex="-1">4명</button>
-          </div>
-          <div class="equal-info" id="equal_info" style="display:none">
-            <span class="equal-per-person">1인 <em id="equal_per_amount">0</em>원</span><span class="equal-detail" id="equal_detail"></span>
-          </div>
-          <div id="equal_companion_list"></div>
-          <div class="companion-total" id="equal_total" style="display:none">
-            <div class="companion-total-row">
-              <span>내 결제금액 (예약자)</span>
-              <span class="my-amount" id="equal_my_amount">0원</span>
-            </div>
-            <div class="companion-total-row">
-              <span>동반자 결제금액 합계</span>
-              <span class="companion-sum" id="equal_companion_sum">0원</span>
-            </div>
-            <div class="companion-total-row total-row">
-              <span>총 그린피</span>
-              <span class="total-amount" id="equal_total_fee">105,000원</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- 직접 입력 패널 -->
-        <div class="split-panel" id="panel_manual" style="display:none">
-          <h4 class="rsv-section-title">동반자 정보 <span class="required-badge">필수</span></h4>
-          <p class="rsv-section-desc">이름, 연락처, 결제금액을 입력해주세요.</p>
-          <div id="companion_list">
-            <div class="companion-item" data-index="1">
-              <div class="companion-header">
-                <span class="companion-label">동반자 1</span>
-                <button type="button" class="companion-remove" onclick="removeCompanion(this)" tabindex="-1">삭제</button>
-              </div>
-              <div class="companion-fields">
-                <div class="input-row">
-                  <label class="input-label">이름</label>
-                  <input type="text" class="rsv-input companion-name" placeholder="이름 입력" tabindex="-1">
-                </div>
-                <div class="input-row">
-                  <label class="input-label">연락처</label>
-                  <input type="tel" class="rsv-input companion-phone" placeholder="010-0000-0000" maxlength="13" tabindex="-1">
-                </div>
-                <div class="input-row">
-                  <label class="input-label">결제금액</label>
-                  <div class="input-with-unit">
-                    <input type="text" class="rsv-input companion-amount" placeholder="금액 입력" tabindex="-1">
-                    <span class="input-unit">원</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <button type="button" class="companion-add-btn" id="companion_add_btn" onclick="addCompanion()" tabindex="-1">
-            + 동반자 추가
-          </button>
-          <div class="companion-total">
-            <div class="companion-total-row">
-              <span>내 결제금액</span>
-              <span class="my-amount" id="my_amount">105,000원</span>
-            </div>
-            <div class="companion-total-row">
-              <span>동반자 결제금액 합계</span>
-              <span class="companion-sum" id="companion_sum">0원</span>
-            </div>
-            <div class="companion-total-row total-row">
-              <span>총 그린피</span>
-              <span class="total-amount" id="total_green_fee">105,000원</span>
-            </div>
-          </div>
-        </div>
-
-      </div>
 
       <!-- ===== 공지사항 ===== -->
       <div class="rsv-block rsv-notice-block">
@@ -363,16 +261,15 @@
     <input type="hidden" name="noti" id="noti" value="">
     <input type="hidden" name="visit_type" id="visit_type" value="direct">
     <input type="hidden" name="payment_method" id="payment_method" value="">
-    <input type="hidden" name="payer_type" id="payer_type" value="">
     <input type="hidden" name="delegate_name" id="h_delegate_name" value="">
     <input type="hidden" name="delegate_phone" id="h_delegate_phone" value="">
-    <input type="hidden" name="split_type" id="split_type" value="">
-    <input type="hidden" name="split_count" id="split_count" value="">
     <input type="hidden" name="delegate_payer_type" id="delegate_payer_type" value="">
+    <!-- 백오피스 결제방법 설정: all=둘다, opencard=오픈카드만, onsite=현장결제만 -->
+    <input type="hidden" name="payment_avail" id="payment_avail" value="onsite">
   </form>
 
   <!-- ==================== Scripts ==================== -->
   <script src="https://code.jquery.com/jquery-1.12.3.min.js"></script>
-  <script src="script_v2.js"></script>
+  <script src="script_v3.js"></script>
 </body>
 </html>

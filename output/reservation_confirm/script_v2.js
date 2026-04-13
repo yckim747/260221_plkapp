@@ -212,11 +212,11 @@ function selectDelegatePayer(th) {
     $('#payment_buttons button[data-payment="opencard"]').addClass('active');
     g_payment = 'opencard';
     $('#payment_method').val('opencard');
-    $('#delegate_payer_guide').html('라운드 후 <strong>회원님</strong>에게 결제 링크가 발송됩니다').show();
+    $('#delegate_payer_guide').removeClass('rsv-callout-right').addClass('rsv-callout-left').html('라운드 후 <strong>회원님</strong>에게 결제 링크가 발송됩니다').show();
     $('#onsite_disabled_guide').show();
   } else {
     // 위임자가 결제: 오픈카드/현장결제 둘 다 선택 가능
-    $('#delegate_payer_guide').html('라운드 후 <strong>위임자</strong>에게 결제 링크가 발송됩니다').show();
+    $('#delegate_payer_guide').removeClass('rsv-callout-left').addClass('rsv-callout-right').html('라운드 후 <strong>위임자</strong>에게 결제 링크가 발송됩니다').show();
     $('#onsite_disabled_guide').hide();
   }
 
@@ -520,8 +520,40 @@ function submitReservation() {
     $('#delegate_payer_type').val(g_payment === 'opencard' ? g_payer_delegate : '');
   }
 
-  var visitLabel = g_visit_type === 'direct' ? '본인 방문' : '위임';
-  showConfirm(visitLabel + '으로 예약을 요청하시겠습니까?', function () {
+  // 확인 팝업에 예약 정보 채우기
+  $('#confirm_place_name').text($('#rsv_place_name').text());
+  $('#confirm_datetime').text($('#rsv_date').text() + ' ' + $('#rsv_ttime').text());
+  $('#confirm_greenfee').text($('#rsv_green_fee_disp').text());
+
+  if (g_visit_type === 'direct') {
+    $('#confirm_booker').text($('#direct_name').text());
+    $('#confirm_phone').text($('input[name="direct_phone"]:checked').val() || '-');
+    $('#confirm_delegate_row').hide();
+  } else {
+    $('#confirm_booker').text($('#direct_name').text());
+    $('#confirm_phone').text($('input[name="direct_phone"]:checked').val() || '-');
+    var dName = $('#delegate_name').val().trim();
+    var dPhone = $('#delegate_phone').val().trim();
+    $('#confirm_delegate').text(dName + ' (' + dPhone + ')');
+    $('#confirm_delegate_row').show();
+  }
+
+  var paymentLabel = g_payment === 'opencard' ? '오픈카드' : '현장결제(페이백)';
+  $('#confirm_payment').text(paymentLabel);
+
+  if (g_visit_type === 'delegate' && g_payment === 'opencard' && g_payer_delegate) {
+    var payerLabel = g_payer_delegate === 'self' ? '내가 결제' : '위임자가 결제';
+    $('#confirm_payer').text(payerLabel);
+    $('#confirm_payer_row').show();
+  } else if (g_visit_type === 'direct' && g_payment === 'opencard' && g_payer_direct) {
+    var payerLabel = g_payer_direct === 'self' ? '내가 결제(전액)' : '동반자 나눠 결제';
+    $('#confirm_payer').text(payerLabel);
+    $('#confirm_payer_row').show();
+  } else {
+    $('#confirm_payer_row').hide();
+  }
+
+  showConfirm('', function () {
     showLoading(function () {
       showAlert('예약이 정상적으로 요청되었습니다. (데모)');
     });
