@@ -1,0 +1,128 @@
+/* ===================================================================
+   예약 최종 확인 팝업 — v4 (가독성 개선 / 톤앤매너 통일)
+   - 포인트 컬러: #4475F6 (프로젝트 브랜드 블루, 예약하기 버튼과 동일)
+   - 회색 글씨 WCAG AA(흰 배경 대비 4.5:1) 이상으로 조정
+     · #555 ≈ 7.46:1 (본문)
+     · #666 ≈ 5.74:1 (보조 라벨)
+     · #8A8F98 / #999 는 가독성 미달 → 사용 금지
+   =================================================================== */
+.confirm-rsv-wrap {
+  width: 100%;
+  background: #fff;
+  border-radius: 14px;
+  overflow: hidden;
+}
+.confirm-rsv-body {
+  text-align: center;
+  padding: 28px 22px 22px;
+}
+.confirm-rsv-icon {
+  width: 44px;
+  height: 44px;
+  margin: 0 auto 18px;
+  background: #E8EFFE;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.confirm-rsv-icon svg { width: 22px; height: 22px; }
+.confirm-rsv-icon svg circle:first-child { fill: #4475F6; }
+
+.confirm-rsv-place {
+  font-size: 16px;
+  font-weight: 700;
+  color: #1A1A1A;
+  line-height: 1.4;
+  letter-spacing: -0.2px;
+}
+.confirm-rsv-datetime {
+  font-size: 22px;
+  font-weight: 800;
+  color: #4475F6;
+  margin-top: 6px;
+  line-height: 1.25;
+  letter-spacing: -0.3px;
+}
+.confirm-rsv-question {
+  font-size: 15px;
+  color: #555555;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  line-height: 1.45;
+  font-weight: 500;
+}
+
+.confirm-rsv-summary {
+  background: #F5F7FB;
+  border-radius: 10px;
+  padding: 6px 16px;
+  text-align: left;
+}
+.confirm-rsv-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  font-size: 14px;
+  color: #1A1A1A;
+  line-height: 1.4;
+}
+.confirm-rsv-row + .confirm-rsv-row {
+  border-top: 1px solid #E2E6EE;
+}
+.confirm-rsv-label {
+  color: #555555;
+  flex-shrink: 0;
+  min-width: 64px;
+  font-weight: 500;
+}
+.confirm-rsv-value {
+  text-align: right;
+  word-break: keep-all;
+  font-weight: 600;
+  color: #1A1A1A;
+}
+.confirm-rsv-row-total {
+  margin-top: 0;
+  padding-top: 12px;
+  border-top: 1px solid #C9D1DE !important;
+}
+.confirm-rsv-row-total .confirm-rsv-label {
+  color: #1A1A1A;
+  font-weight: 600;
+}
+.confirm-rsv-price {
+  font-weight: 800;
+  color: #4475F6;
+  font-size: 16px;
+}
+
+/* 버튼 영역 */
+.confirm-rsv-buttons {
+  display: flex;
+  gap: 8px;
+  padding: 14px 18px 18px;
+  border-top: 0;
+  background: #fff;
+}
+.confirm-rsv-btn {
+  flex: 1;
+  display: block;
+  padding: 15px 0;
+  text-align: center;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  border-radius: 10px;
+  letter-spacing: -0.2px;
+}
+.confirm-rsv-btn-cancel {
+  background: #EEF1F6;
+  color: #333333;
+  border-right: 0;
+}
+.confirm-rsv-btn-ok {
+  background: #4475F6;
+  color: #fff;
+}
