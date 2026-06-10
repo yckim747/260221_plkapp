@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>동반자 정보 입력 - Pacific Links Korea</title>
+  <link rel="stylesheet" href="../../assets/css/reset.css">
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="stylesheet" href="../../assets/css/add.css">
+  <link rel="stylesheet" href="page.css">
+  <link rel="stylesheet" href="promo.css">
+</head>
+<body>
+
+  <!-- ==================== 고정 헤더 ==================== -->
+  <section class="header booking_header">
+    <h1 class="header-title">동반자 정보 입력</h1>
+  </section>
+
+  <!-- ==================== 메인 콘텐츠 ==================== -->
+  <div class="booking_live">
+    <div class="container rsv-container">
+
+      <!-- ===== 동반자 정보 입력 (총 3명, 모두 필수) ===== -->
+      <div class="rsv-block">
+
+        <!-- 동반자 1 -->
+        <div class="companion-item" data-index="1">
+          <div class="companion-header">
+            <span class="companion-label">동반자 1</span>
+            <span class="required-badge">필수</span>
+          </div>
+          <div class="companion-fields">
+            <div class="input-row">
+              <label class="input-label">이름</label>
+              <input type="text" class="rsv-input companion-name" placeholder="이름 입력" tabindex="-1">
+            </div>
+            <div class="input-row">
+              <label class="input-label">연락처</label>
+              <input type="tel" class="rsv-input companion-phone" placeholder="010-0000-0000" maxlength="13" tabindex="-1">
+            </div>
+          </div>
+        </div>
+
+        <!-- 동반자 2 -->
+        <div class="companion-item" data-index="2">
+          <div class="companion-header">
+            <span class="companion-label">동반자 2</span>
+            <span class="required-badge">필수</span>
+          </div>
+          <div class="companion-fields">
+            <div class="input-row">
+              <label class="input-label">이름</label>
+              <input type="text" class="rsv-input companion-name" placeholder="이름 입력" tabindex="-1">
+            </div>
+            <div class="input-row">
+              <label class="input-label">연락처</label>
+              <input type="tel" class="rsv-input companion-phone" placeholder="010-0000-0000" maxlength="13" tabindex="-1">
+            </div>
+          </div>
+        </div>
+
+        <!-- 동반자 3 -->
+        <div class="companion-item" data-index="3">
+          <div class="companion-header">
+            <span class="companion-label">동반자 3</span>
+            <span class="required-badge">필수</span>
+          </div>
+          <div class="companion-fields">
+            <div class="input-row">
+              <label class="input-label">이름</label>
+              <input type="text" class="rsv-input companion-name" placeholder="이름 입력" tabindex="-1">
+            </div>
+            <div class="input-row">
+              <label class="input-label">연락처</label>
+              <input type="tel" class="rsv-input companion-phone" placeholder="010-0000-0000" maxlength="13" tabindex="-1">
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ===== 이벤트 안내 ===== -->
+      <div class="rsv-block rsv-notice-block">
+        <h4 class="rsv-block-title">이벤트 안내</h4>
+        <ul class="rsv-notice-list">
+          <li>PLK앱 회원가입 후 PLK앱 결제 시 비회원은 10% 할인, 멤버십 회원은 회원가에서 10% 추가할인됩니다.</li>
+          <li>결제 링크는 라운드 후 동반자에게 자동 발송됩니다.</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ==================== 하단 고정 버튼 ==================== -->
+  <div class="rsv-bottom-bar">
+    <button type="button" class="rsv-cancel-btn btn-stroke" onclick="history.back()" tabindex="-1">취소</button>
+    <button type="button" class="rsv-submit-btn btn-fill" onclick="submitCompanions()" tabindex="-1">동반자 저장 및 안내문자 발송</button>
+  </div>
+
+  <!-- ==================== 등록 완료 안내 화면 ==================== -->
+  <div class="complete-screen" id="complete_screen" style="display:none">
+    <div class="complete-inner">
+
+      <div class="complete-icon">
+        <svg width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="22" cy="22" r="22" fill="#4475F6"/>
+          <path d="M14 22.5L19.5 28L31 16.5" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+
+      <h2 class="complete-title">동반자 정보가<br>정상 등록되었습니다</h2>
+      <p class="complete-desc">등록하신 동반자에게 안내 문자가 발송되었습니다.</p>
+
+      <!-- 등록된 동반자 목록 -->
+      <div class="complete-list" id="complete_list"></div>
+
+      <!-- 핵심 안내 (할인 조건) -->
+      <div class="complete-callout">
+        <span class="complete-callout-badge">할인 적용 조건</span>
+        <p class="complete-callout-text">
+          등록된 동반자는 <em>영업일 기준 라운드 2일 전까지</em> PLK앱 회원가입을 완료해야 10% 할인이 적용됩니다.
+        </p>
+      </div>
+
+      <ul class="complete-note-list">
+        <li>회원가입 기한이 지나면 할인이 적용되지 않습니다.</li>
+        <li>결제 링크는 라운드 후 동반자에게 자동 발송됩니다.</li>
+      </ul>
+
+    </div>
+
+    <div class="rsv-bottom-bar">
+      <button type="button" class="rsv-submit-btn btn-fill" style="flex:1" onclick="confirmComplete()" tabindex="-1">확인</button>
+    </div>
+  </div>
+
+  <!-- ==================== Alert 팝업 ==================== -->
+  <div id="alert_pop" class="primary_popup agree_popup" style="display:none">
+    <div class="pop_close_bg"></div>
+    <div class="popup_content">
+      <div class="txt" id="alert_pop_title">메시지</div>
+      <button class="close btn-fill popup_s1_btn1" type="button" onclick="closeAlert()" tabindex="-1">확인</button>
+    </div>
+  </div>
+
+  <!-- ==================== Confirm 팝업 (발송 최종 확인) ==================== -->
+  <div class="mpop popup_s1n" id="confirm_pop" style="display:none">
+    <div class="popup_s1_inner">
+      <div class="confirm-rsv-wrap">
+        <div class="confirm-rsv-body">
+          <div class="confirm-rsv-icon">
+            <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="13" cy="13" r="13" fill="#4475F6"/>
+              <rect x="12" y="6" width="2" height="9" rx="1" fill="#fff"/>
+              <circle cx="13" cy="18.5" r="1.3" fill="#fff"/>
+            </svg>
+          </div>
+          <div class="confirm-rsv-place">동반자 안내문자 발송</div>
+          <p class="confirm-rsv-question">입력하신 동반자 3명에게<br>안내 문자를 발송하시겠습니까?</p>
+          <div class="confirm-rsv-summary" id="confirm_companion_summary"></div>
+        </div>
+        <div class="confirm-rsv-buttons">
+          <a class="confirm-rsv-btn confirm-rsv-btn-cancel" onclick="closeConfirm()" tabindex="-1">취소</a>
+          <a class="confirm-rsv-btn confirm-rsv-btn-ok" onclick="doSubmit()" tabindex="-1">발송</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== Scripts ==================== -->
+  <script src="https://code.jquery.com/jquery-1.12.3.min.js"></script>
+  <script src="promo.js"></script>
+</body>
+</html>
